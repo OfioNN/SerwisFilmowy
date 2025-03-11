@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "SerwisFilmowy (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "SerwisFilmowy (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
