@@ -10,7 +10,7 @@
     Title="Serwis Filmowy">
 
     <!--Main Grid-->
-    <Grid Margin="0" Background="#FF24282B">
+    <Grid Margin="0" Background="#FF24282B" x:Name="mainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
             <RowDefinition Height="*"/>

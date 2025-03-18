@@ -33,11 +33,7 @@ namespace SerwisFilmowy
     /// An empty window that can be used on its own or navigated to within a Frame.
     /// </summary>
     /// 
-    public class NativeApi {
-        //Platform invoke definition for DwmSetWindowAttribute
-        [DllImport("dwmapi.dll")]
-        public static extern int DwmSetWindowAttribute(IntPtr hwnd, int attribute, ref int value, int size);
-    }
+
 
     public sealed partial class MainWindow : Window
     {
@@ -48,22 +44,15 @@ namespace SerwisFilmowy
 
             this.AppWindow.Resize(new SizeInt32(960, 540));
 
-            var presenter = AppWindow.Presenter as OverlappedPresenter;
-            if (presenter == null) {
-                return;
+            ExtendsContentIntoTitleBar = true;
+            SetTitleBar(mainGrid);
+
+            if (AppWindow.Presenter is OverlappedPresenter presenter) {
+                presenter.IsResizable = false;
+                presenter.IsMaximizable = false;
+                presenter.IsMinimizable = false;
+                presenter.SetBorderAndTitleBar(true, false);
             }
-            presenter.IsMaximizable = false;
-            presenter.IsMinimizable = false;
-            presenter.IsResizable = false;
-            presenter.SetBorderAndTitleBar(true, false);
-
-            //This Win32Interop is in the Microsoft.UI namespace.
-            var windowHandle = Win32Interop.GetWindowFromWindowId(AppWindow.Id);
-
-            //DWM_WINDOW_CORNER_PREFERENCE documentation gives DWMWCP_ROUND as 2
-            int cornerPreference = 2;
-            //DWMWA_WINDOW_CORNER_PREFERENCE is documented to have a value of 33
-            NativeApi.DwmSetWindowAttribute(windowHandle, 33, ref cornerPreference, Marshal.SizeOf<int>());
         }
 
 
