@@ -45,7 +45,7 @@
                                         <!-- Zmiana koloru po kliknięciu bez animacji -->
                                         <VisualState x:Name="Pressed">
                                             <VisualState.Setters>
-                                                <Setter Target="Border.Background" Value="Black"/>
+                                                <Setter Target="Border.Background" Value="Green"/>
                                             </VisualState.Setters>
                                         </VisualState>
                                     </VisualStateGroup>

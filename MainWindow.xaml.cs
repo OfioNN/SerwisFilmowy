@@ -45,7 +45,7 @@ namespace SerwisFilmowy
             this.AppWindow.Resize(new SizeInt32(960, 540));
 
             ExtendsContentIntoTitleBar = true;
-            SetTitleBar(mainGrid);
+            SetTitleBar(gridMove);
 
             if (AppWindow.Presenter is OverlappedPresenter presenter) {
                 presenter.IsResizable = false;
