@@ -21,6 +21,8 @@ using Microsoft.UI.Input;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Sockets;
 using Windows.UI.ViewManagement;
+using Windows.UI.WindowManagement;
+using System.Runtime.InteropServices;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -31,15 +33,37 @@ namespace SerwisFilmowy
     /// An empty window that can be used on its own or navigated to within a Frame.
     /// </summary>
     /// 
+    public class NativeApi {
+        //Platform invoke definition for DwmSetWindowAttribute
+        [DllImport("dwmapi.dll")]
+        public static extern int DwmSetWindowAttribute(IntPtr hwnd, int attribute, ref int value, int size);
+    }
+
     public sealed partial class MainWindow : Window
     {
 
         public MainWindow()
         {
             this.InitializeComponent();
-            this.ExtendsContentIntoTitleBar = true;
 
             this.AppWindow.Resize(new SizeInt32(960, 540));
+
+            var presenter = AppWindow.Presenter as OverlappedPresenter;
+            if (presenter == null) {
+                return;
+            }
+            presenter.IsMaximizable = false;
+            presenter.IsMinimizable = false;
+            presenter.IsResizable = false;
+            presenter.SetBorderAndTitleBar(true, false);
+
+            //This Win32Interop is in the Microsoft.UI namespace.
+            var windowHandle = Win32Interop.GetWindowFromWindowId(AppWindow.Id);
+
+            //DWM_WINDOW_CORNER_PREFERENCE documentation gives DWMWCP_ROUND as 2
+            int cornerPreference = 2;
+            //DWMWA_WINDOW_CORNER_PREFERENCE is documented to have a value of 33
+            NativeApi.DwmSetWindowAttribute(windowHandle, 33, ref cornerPreference, Marshal.SizeOf<int>());
         }
 
 
