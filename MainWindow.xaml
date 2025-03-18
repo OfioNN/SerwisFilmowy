@@ -121,20 +121,12 @@
         </Grid>
 
         <Border BorderBrush="Black" CornerRadius="10" BorderThickness="0" VerticalAlignment="Center" Background="#000814" Margin="10,0,10,0">
-            <Grid >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBox Grid.Column="0" Grid.Row="0" Text="Szukaj" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center"/> <!--ADD CURSOR IBEAM-->
-                <Image Grid.Column="1" Grid.Row="0" Source="D:\Nowy folder\search2.png" Margin="5,0,5,0" Height="20"/>
-            </Grid>
+            <AutoSuggestBox PlaceholderText="Search movie" QueryIcon="Find"/>
         </Border>
 
-        <ListBox Grid.Row="1" Grid.Column="0" Margin="10,0,10,0" BorderThickness="3" Background="#003554" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Arial" Foreground="White" Padding="0,10,0,10" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
-            <ListBoxItem>Oppenheimer</ListBoxItem>
-        </ListBox>
+        <ListView Grid.Row="1" Grid.Column="0" Margin="10,0,10,0" BorderThickness="3" BorderBrush="Black" Background="#003554" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Arial" Foreground="White" Padding="0,10,0,10" ScrollViewer.HorizontalScrollBarVisibility="Hidden" CornerRadius="15">
+            <ListViewItem>Oppenheimer</ListViewItem>
+        </ListView>
 
         <Grid Grid.Row="2" Grid.Column="1">
             <Grid.ColumnDefinitions>
