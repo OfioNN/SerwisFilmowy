@@ -30,12 +30,14 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Row="0" Orientation="Horizontal" FlowDirection="RightToLeft">
-                <Ellipse Fill="Red" Height="20" Width="20" Margin="5,0,5,0"/> <!--ADD CURSOR HAND-->
-                <Ellipse Fill="Yellow" Height="20" Width="20"/>
-            </StackPanel>
+            <local:StackPanelControls x:Name="StackPanelHand" Grid.Row="0" Orientation="Horizontal" FlowDirection="RightToLeft">
+                
+                <Ellipse Name="CloseEllipse" Fill="Red" Height="20" Width="20" Margin="5,0,5,0" PointerPressed="Click_Close" PointerEntered="Entered_Close" PointerExited="Exited_Close"/>
+                <!--ADD CURSOR HAND-->
+                <Ellipse Name="MinimizeEllipse" Fill="Yellow" Height="20" Width="20" PointerPressed="Click_Minimize" PointerEntered="Entered_Minimize" PointerExited="Exited_Minimize"/>
+                </local:StackPanelControls>
 
-            <Grid Grid.Row="1" Margin="50,0,50,0">
+                <Grid Grid.Row="1" Margin="50,0,50,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
