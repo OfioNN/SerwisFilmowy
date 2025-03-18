@@ -53,7 +53,9 @@
                         <RowDefinition Height="0.25*"/>
                     </Grid.RowDefinitions>
 
-                    <TextBox Grid.Row="0" Text="- Tytuł -" Foreground="White" FontSize="12" TextAlignment="Center" Background="Black"/>
+                    <Border Grid.Row="0" Background="Black">
+                        <TextBlock Text="- Tytuł -" Foreground="White" FontSize="12" TextAlignment="Center"/>
+                    </Border>
                     <TextBox Grid.Row="1" Text="Oppenheimer" Foreground="White" FontSize="18" FontWeight="Bold" TextAlignment="Center" Background="#FF373737"/>
                     <TextBox Grid.Row="2" Text="- Rok produkcji -" Foreground="White" FontSize="12" TextAlignment="Center" Background="Black"/>
                     <TextBox Grid.Row="3" Text="2023" Foreground="White" FontSize="18" FontWeight="Bold" TextAlignment="Center" Background="#FF373737"/>
@@ -85,8 +87,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Grid.Row="0" Margin="10,20,5,20" Content="Dodaj" Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Arial"/> <!--ADD CURSOR HAND-->
-            <Button Grid.Column="1" Grid.Row="0" Margin="5,20,10,20" Content="Usuń" IsEnabled="False"  Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Arial"/>
+            <Button Grid.Column="0" Grid.Row="0" Margin="10,20,5,20" Content="Dodaj" Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Arial" CornerRadius="10" Background="#003554" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/> <!--ADD CURSOR HAND-->
+            <Button Grid.Column="1" Grid.Row="0" Margin="5,20,10,20" Content="Usuń" IsEnabled="False"  Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Arial" CornerRadius="10" Background="#003554" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
         </Grid>
 
@@ -112,7 +114,7 @@
                 <ColumnDefinition Width="0.3*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="1" Margin="10,20,10,20" Content="Edytuj"  Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Arial"/>
+            <Button Style="{StaticResource CustomButtonStyle}" Grid.Column="1" Margin="10,20,10,20" Content="Edytuj"  Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Arial" CornerRadius="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
         </Grid>
 
