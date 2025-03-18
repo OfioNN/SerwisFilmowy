@@ -15,7 +15,7 @@
             <!-- Other app resources here -->
 
             <Style x:Key="CustomButtonStyle" TargetType="Button">
-                <Setter Property="Background" Value="Blue"/>
+                <Setter Property="Background" Value="#003554"/>
                 <Setter Property="Foreground" Value="White"/>
                 <Setter Property="Padding" Value="10,5"/>
                 <Setter Property="CornerRadius" Value="10"/>
@@ -38,14 +38,21 @@
                                         <!-- Zmiana koloru po najechaniu bez animacji -->
                                         <VisualState x:Name="PointerOver">
                                             <VisualState.Setters>
-                                                <Setter Target="Border.Background" Value="DarkBlue"/>
+                                                <Setter Target="Border.Background" Value="#0582ca"/>
                                             </VisualState.Setters>
                                         </VisualState>
 
                                         <!-- Zmiana koloru po kliknięciu bez animacji -->
                                         <VisualState x:Name="Pressed">
                                             <VisualState.Setters>
-                                                <Setter Target="Border.Background" Value="Green"/>
+                                                <Setter Target="Border.Background" Value="#00a6fb"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- Zmiana koloru po wyłączeniu przycisku -->
+                                        <VisualState x:Name="Disabled">
+                                            <VisualState.Setters>
+                                                <Setter Target="Border.Background" Value="#7d8597"/>
                                             </VisualState.Setters>
                                         </VisualState>
                                     </VisualStateGroup>
