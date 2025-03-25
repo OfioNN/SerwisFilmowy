@@ -59,9 +59,6 @@ namespace SerwisFilmowy.Repositories {
                     Console.WriteLine($"Error: {ex.Message}");
                 }
             }
-            Movies movie = new Movies();
-
-            Create(movie);
 
         }
 
@@ -81,11 +78,16 @@ namespace SerwisFilmowy.Repositories {
 
                     if (connection.State == ConnectionState.Open) {
 
-                        string dbQuery = $"INSERT INTO Movies (TITLE, DIRECTOR, STAFF, DESCRIPTION, IMAGE) VALUES ('Dawid', 'Dawid', 'Dawid', 'Dawid', 'Dawid');";
+                        string dbQuery = $"INSERT INTO Movies (TITLE, DIRECTOR, STAFF, DESCRIPTION, IMAGE) VALUES ('{movie.Title}', '{movie.Director}', '{movie.Genre}', '{movie.Description}', @Image);";
 
-                        using (FbCommand command = new FbCommand(dbQuery, connection))
+                        using (FbCommand command = new FbCommand(dbQuery, connection)) {
+
+                            command.Parameters.Add("@Image", FbDbType.Binary).Value = movie.Image;
+
                             if (command.ExecuteNonQuery() == 1)
                                 isCreated = true;
+                        }
+
 
                     }
 

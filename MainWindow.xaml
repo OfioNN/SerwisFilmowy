@@ -115,7 +115,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Style="{StaticResource CustomButtonStyle}" Grid.Column="0" Grid.Row="0" Margin="10,20,5,20" Content="Dodaj" Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Arial" CornerRadius="10" Background="#003554" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <Button Style="{StaticResource CustomButtonStyle}" Grid.Column="0" Grid.Row="0" Margin="10,20,5,20" Content="Dodaj" Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Arial" CornerRadius="10" Background="#003554" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Dodaj_Click"/>
             <Button Style="{StaticResource CustomButtonStyle}" Grid.Column="1" Grid.Row="0" Margin="5,20,10,20" Content="Usuń" IsEnabled="False"  Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Arial" CornerRadius="10" Background="#003554" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
         </Grid>

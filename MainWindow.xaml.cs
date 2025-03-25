@@ -40,7 +40,7 @@ namespace SerwisFilmowy
     public sealed partial class MainWindow : Window
     {
 
-        readonly MovieRepository _movieRepository = new MovieRepository();
+        private readonly IMovieRepository _movieRepository = new MovieRepository();
 
         public MainWindow()
         {
@@ -97,6 +97,12 @@ namespace SerwisFilmowy
             MinimizeEllipse.Fill = new SolidColorBrush(Colors.Yellow);
         }
         #endregion
+
+        private void Dodaj_Click(object sender, RoutedEventArgs e) {
+            Movies movie = new Movies() { Title = "dasddas", Director = "dasdas", Genre = "dasdas", Description = "dasdas", Image = File.ReadAllBytes(@"D:\Nowy folder\image-optimisation-scaled.jpg") };
+
+            _movieRepository.Create(movie);
+        }
 
     }
 
