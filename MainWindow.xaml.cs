@@ -23,6 +23,8 @@ using System.Net.Sockets;
 using Windows.UI.ViewManagement;
 using Windows.UI.WindowManagement;
 using System.Runtime.InteropServices;
+using SerwisFilmowy.Model;
+using SerwisFilmowy.Repositories;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -37,6 +39,8 @@ namespace SerwisFilmowy
 
     public sealed partial class MainWindow : Window
     {
+
+        readonly MovieRepository _movieRepository = new MovieRepository();
 
         public MainWindow()
         {
@@ -78,6 +82,9 @@ namespace SerwisFilmowy
             if (this.AppWindow.Presenter is OverlappedPresenter presenter) {
                 presenter.Minimize();
             }
+
+            Movies movie = new Movies() { Title="dada", Description="dsada" };
+            _movieRepository.Create(movie);
 
         }
 

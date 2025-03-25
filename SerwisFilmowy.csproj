@@ -11,6 +11,9 @@
     <UseWinUI>true</UseWinUI>
     <EnableMsixTooling>true</EnableMsixTooling>
     <Nullable>enable</Nullable>
+
+	  <WindowsPackageType>None</WindowsPackageType>
+	  <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
   </PropertyGroup>
 
   <ItemGroup>
@@ -36,10 +39,10 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.3" />
-    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="9.0.3" />
+    <PackageReference Include="FirebirdSql.Data.FirebirdClient" Version="10.3.2" />
+    <PackageReference Include="FirebirdSql.EntityFrameworkCore.Firebird" Version="12.0.0" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.250205002" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250310001" />
   </ItemGroup>
 
   <!--
