@@ -41,7 +41,6 @@
                 <local:StackPanelControls x:Name="StackPanelHand" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
 
                     <Ellipse Name="CloseEllipse" Fill="Red" Height="20" Width="20" Margin="5,0,5,0" PointerPressed="Click_Close" PointerEntered="Entered_Close" PointerExited="Exited_Close"/>
-                    <!--ADD CURSOR HAND-->
                     <Ellipse Name="MinimizeEllipse" Fill="Yellow" Height="20" Width="20" PointerPressed="Click_Minimize" PointerEntered="Entered_Minimize" PointerExited="Exited_Minimize"/>
                 </local:StackPanelControls>
             </Grid>

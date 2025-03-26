@@ -15,6 +15,9 @@
 	  <WindowsPackageType>None</WindowsPackageType>
 	  <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Create.xaml" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -43,6 +46,11 @@
     <PackageReference Include="FirebirdSql.EntityFrameworkCore.Firebird" Version="12.0.0" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250310001" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Create.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <!--

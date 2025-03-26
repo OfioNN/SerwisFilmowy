@@ -12,49 +12,27 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
-using Windows.Graphics;
 using Microsoft.UI.Windowing;
-using Windows.UI.Core;
 using Microsoft.UI;
-using Microsoft.UI.Xaml.Shapes;
-using Microsoft.UI.Input;
-using System.Security.Cryptography.X509Certificates;
-using System.Net.Sockets;
-using Windows.UI.ViewManagement;
-using Windows.UI.WindowManagement;
-using System.Runtime.InteropServices;
-using SerwisFilmowy.Model;
-using SerwisFilmowy.Repositories;
+
+// To learn more about WinUI, the WinUI project structure,
+// and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace SerwisFilmowy
 {
-
-    public sealed partial class MainWindow : Window
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class Create : Page
     {
-
-        private readonly IMovieRepository _movieRepository = new MovieRepository();
-
-        public MainWindow()
+        public Create()
         {
             this.InitializeComponent();
-
-            this.AppWindow.Resize(new SizeInt32(960, 540));
-
-            ExtendsContentIntoTitleBar = true;
-            SetTitleBar(gridMove);
-
-            if (AppWindow.Presenter is OverlappedPresenter presenter) {
-                presenter.IsResizable = false;
-                presenter.IsMaximizable = false;
-                presenter.IsMinimizable = false;
-                presenter.SetBorderAndTitleBar(true, false);
-            }
         }
-
 
         #region Close Ellipse
         private void Click_Close(object sender, RoutedEventArgs e) {
-            this.Close();
+            Window.Current.Close();
 
         }
 
@@ -71,7 +49,7 @@ namespace SerwisFilmowy
         #region Minimize Ellipse
         private void Click_Minimize(object sender, RoutedEventArgs e) {
 
-            if (this.AppWindow.Presenter is OverlappedPresenter presenter) {
+            if (Window.Current.AppWindow.Presenter is OverlappedPresenter presenter) {
                 presenter.Minimize();
             }
         }
@@ -85,20 +63,5 @@ namespace SerwisFilmowy
             MinimizeEllipse.Fill = new SolidColorBrush(Colors.Yellow);
         }
         #endregion
-
-        private void Dodaj_Click(object sender, RoutedEventArgs e) {
-            Movies movie = new Movies() { Title = "dasddas", Director = "dasdas", Genre = "dasdas", Description = "dasdas", Image = File.ReadAllBytes(@"D:\Nowy folder\image-optimisation-scaled.jpg") };
-
-            _movieRepository.Create(movie);
-        }
-
-    }
-
-
-
-    public class StackPanelControls : StackPanel {
-        public void changeCursor() {
-            ProtectedCursor = InputSystemCursor.Create(InputSystemCursorShape.Hand);
-        }
     }
 }
