@@ -32,10 +32,10 @@ namespace SerwisFilmowy
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
         /// 
-        public App()
-        {
-            this.InitializeComponent();
+        public Window? m_window { get; private set; }
 
+        public App() {
+            this.InitializeComponent();
         }
 
         /// <summary>
@@ -60,6 +60,5 @@ namespace SerwisFilmowy
             m_window.Activate();
         }
 
-        private Window? m_window;
     }
 }

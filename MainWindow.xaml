@@ -11,6 +11,9 @@
 
     <!--Main Grid-->
     <Grid Margin="0" Background="#FF24282B" x:Name="mainGrid">
+        
+        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
             <RowDefinition Height="*"/>
@@ -136,6 +139,16 @@
             <Button Style="{StaticResource CustomButtonStyle}" Grid.Column="1" Margin="10,20,10,20" Content="Edytuj"  Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Arial" CornerRadius="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
         </Grid>
+
+        <!-- Główna zawartość z Frame -->
+        <Frame x:Name="ContentFrame" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="0">
+            <Frame.ContentTransitions>
+                <TransitionCollection>
+                    <NavigationThemeTransition />
+                </TransitionCollection>
+            </Frame.ContentTransitions>
+        </Frame>
+
 
     </Grid>
 </Window>

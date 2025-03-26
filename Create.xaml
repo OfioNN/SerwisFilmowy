@@ -36,13 +36,13 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" Text="- Tytuł -" Foreground="White" FontSize="12" Padding="0"/>
-            <TextBox Grid.Column="0" Grid.Row="1" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0"/>
+            <TextBox x:Name="TitleBox" Grid.Column="0" Grid.Row="1" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0"/>
             <TextBlock Grid.Row="2" Text="- Rok produkcji -" Foreground="White" FontSize="12" Padding="0"/>
-            <TextBox Grid.Column="0" Grid.Row="3" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0"/>
+            <TextBox x:Name="YearBox" Grid.Column="0" Grid.Row="3" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0"/>
             <TextBlock Grid.Row="4" Text="- Reżyser -" Foreground="White" FontSize="12" Padding="0"/>
-            <TextBox Grid.Column="0" Grid.Row="5" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0"/>
+            <TextBox x:Name="DirectorBox" Grid.Column="0" Grid.Row="5" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0"/>
             <TextBlock Grid.Row="6" Text="- Obsada -" Foreground="White" FontSize="12" Padding="0"/>
-            <TextBox Grid.Column="0" Grid.Row="7" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0"/>
+            <TextBox x:Name="CastBox" Grid.Column="0" Grid.Row="7" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0"/>
         </Grid>
 
         <Grid Grid.Row="0" Grid.Column="1">
@@ -65,7 +65,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Text="- Opis -" Foreground="White" FontSize="12" Padding="0"/>
-                <TextBox Grid.Column="0" Grid.Row="1" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0" TextWrapping="Wrap"/>
+                <TextBox x:Name="DescriptionBox" Grid.Column="0" Grid.Row="1" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0" TextWrapping="Wrap"/>
         </Grid>
 
             <Rectangle Grid.Row="2" Fill="#FF191919" Margin="200,50,200,50"/>
@@ -79,8 +79,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Style="{StaticResource CustomButtonStyle}" Grid.Column="0" Grid.Row="0" Margin="25,10,125,10" Content="Wczytaj zdjęcie" Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Arial"/>
-            <Button Style="{StaticResource CustomButtonStyle}" Grid.Column="1" Grid.Row="0" Margin="150,10,25,10" Content="Zapisz" Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Arial"/>
+            <Button Style="{StaticResource CustomButtonStyle}" Grid.Column="0" Grid.Row="0" Margin="25,10,125,10" Content="Wczytaj zdjęcie" Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Arial" Click="LoadImage_Click"/>
+            <Button Style="{StaticResource CustomButtonStyle}" Grid.Column="1" Grid.Row="0" Margin="150,10,25,10" Content="Zapisz" Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Arial" Click="Save_Click"/>
 
         </Grid>
 
