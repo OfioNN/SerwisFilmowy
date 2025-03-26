@@ -123,7 +123,7 @@
         </Grid>
 
         <Border BorderBrush="Black" CornerRadius="10" BorderThickness="0" VerticalAlignment="Center" Background="#000814" Margin="10,0,10,0">
-            <AutoSuggestBox PlaceholderText="Search movie" QueryIcon="Find"/>
+            <AutoSuggestBox PlaceholderText="Search movie" QueryIcon="Find" TextChanged="AutoSuggestBox_TextChanged" SuggestionChosen="AutoSuggestBox_SuggestionChosen" x:Name="SuggestionOutput"/>
         </Border>
 
         <ListView Grid.Row="1" Grid.Column="0" Margin="10,0,10,0" BorderThickness="3" BorderBrush="Black" Background="#003554" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Arial" Foreground="White" Padding="0,10,0,10" ScrollViewer.HorizontalScrollBarVisibility="Hidden" CornerRadius="15">

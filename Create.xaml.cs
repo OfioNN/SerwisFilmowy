@@ -103,9 +103,6 @@ namespace SerwisFilmowy
             if (file != null) {
                 _selectedImageBytes = File.ReadAllBytes(file.Path);
             }
-            else {
-
-            }
 
             //re-enable the button
             senderButton.IsEnabled = true;

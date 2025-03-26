@@ -32,6 +32,21 @@ namespace SerwisFilmowy
     public sealed partial class MainWindow : Window
     {
 
+        private List<string> Movies = new List<string>()
+        {
+            "Oppenheimer",
+            "Good Will Hunting",
+            "The Godfather",
+            "The Shawshank Redemption",
+            "The Dark Knight",
+            "Forrest Gump",
+            "The Matrix",
+            "The Lord of the Rings",
+            "Fight Club",
+            "Inception"
+        };
+
+
 
         public MainWindow()
         {
@@ -88,6 +103,35 @@ namespace SerwisFilmowy
         private void Dodaj_Click(object sender, RoutedEventArgs e) {
 
             ContentFrame.Navigate(typeof(Create), null);
+        }
+
+
+        // Handle text change and present suitable items
+        private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args) {
+            // Since selecting an item will also change the text,
+            // only listen to changes caused by user entering text.
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput) {
+                var suitableItems = new List<string>();
+                var splitText = sender.Text.ToLower().Split(" ");
+                foreach (var movie in Movies) {
+                    var found = splitText.All((key) =>
+                    {
+                        return movie.ToLower().Contains(key);
+                    });
+                    if (found) {
+                        suitableItems.Add(movie);
+                    }
+                }
+                if (suitableItems.Count == 0) {
+                    suitableItems.Add("No results found");
+                }
+                sender.ItemsSource = suitableItems;
+            }
+        }
+
+        // Handle user selecting an item, in our case just output the selected item.
+        private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args) {
+            SuggestionOutput.Text = args.SelectedItem.ToString();
         }
 
     }
