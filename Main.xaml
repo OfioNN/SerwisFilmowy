@@ -110,7 +110,7 @@
             <AutoSuggestBox PlaceholderText="Search movie" QueryIcon="Find" TextChanged="AutoSuggestBox_TextChanged" SuggestionChosen="AutoSuggestBox_SuggestionChosen" x:Name="SuggestionOutput"/>
         </Border>
 
-        <ListView Grid.Row="1" Grid.Column="0" Margin="10,0,10,0" BorderThickness="3" BorderBrush="Black" Background="#003554" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Arial" Foreground="White" Padding="0,10,0,10" ScrollViewer.HorizontalScrollBarVisibility="Hidden" CornerRadius="15">
+        <ListView x:Name="listView" Grid.Row="1" Grid.Column="0" Margin="10,0,10,0" BorderThickness="3" BorderBrush="Black" Background="#003554" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Arial" Foreground="White" Padding="0,10,0,10" ScrollViewer.HorizontalScrollBarVisibility="Hidden" CornerRadius="15">
             <ListViewItem>Oppenheimer</ListViewItem>
         </ListView>
 

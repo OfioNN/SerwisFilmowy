@@ -28,36 +28,29 @@ namespace SerwisFilmowy
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Main : Page
-    {
+    public sealed partial class Main : Page {
         private readonly IMovieRepository _movieRepository = new MovieRepository();
 
-        private List<string> Movies = new List<string>()
-{
-            "Oppenheimer",
-            "Good Will Hunting",
-            "The Godfather",
-            "The Shawshank Redemption",
-            "The Dark Knight",
-            "Forrest Gump",
-            "The Matrix",
-            "The Lord of the Rings",
-            "Fight Club",
-            "Inception"
-        };
+        private List<string> moviesListTitle = new List<string>();
 
 
-        public Main()
-        {
+        public Main() {
             this.InitializeComponent();
+
+            List<Movies> moviesList = _movieRepository.ReadAll();
+
+            foreach (var movie in moviesList) {
+                listView.Items.Add(movie.Title);
+                moviesListTitle.Add(movie.Title);
+            }
         }
 
 
         private void Dodaj_Click(object sender, RoutedEventArgs e) {
 
             ContentFrame.Navigate(typeof(Create), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
-        }        
-        
+        }
+
         private void Usun_Click(object sender, RoutedEventArgs e) {
             Movies movie = new Movies() { Id = 1 };
 
@@ -70,7 +63,7 @@ namespace SerwisFilmowy
             ContentFrame.Navigate(typeof(Update), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }
         private async void Proba_Click(object sender, RoutedEventArgs e) {
-             Movies movie = _movieRepository.Read(2);
+            Movies movie = _movieRepository.Read(2);
 
             titleTxt.Text = movie.Title;
             directorTxt.Text = movie.Director;
@@ -95,7 +88,7 @@ namespace SerwisFilmowy
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput) {
                 var suitableItems = new List<string>();
                 var splitText = sender.Text.ToLower().Split(" ");
-                foreach (var movie in Movies) {
+                foreach (var movie in moviesListTitle) {
                     var found = splitText.All((key) => {
                         return movie.ToLower().Contains(key);
                     });
