@@ -34,41 +34,6 @@ namespace SerwisFilmowy
 
         }
 
-        #region Close Ellipse
-        private void Click_Close(object sender, RoutedEventArgs e) {
-            var window = (Application.Current as App)?.m_window;
-            window?.Close();
-        }
-
-        private void Entered_Close(object sender, RoutedEventArgs e) {
-            CloseEllipse.Fill = new SolidColorBrush(Colors.Firebrick);
-            StackPanelHand.changeCursor();
-        }
-
-        private void Exited_Close(object sender, RoutedEventArgs e) {
-            CloseEllipse.Fill = new SolidColorBrush(Colors.Red);
-        }
-        #endregion
-
-        #region Minimize Ellipse
-        private void Click_Minimize(object sender, RoutedEventArgs e) {
-            var window = (Application.Current as App)?.m_window;
-
-            if (window.AppWindow.Presenter is OverlappedPresenter presenter) {
-                presenter.Minimize();
-            }
-        }
-
-        private void Entered_Minimize(object sender, RoutedEventArgs e) {
-            MinimizeEllipse.Fill = new SolidColorBrush(Colors.Gold);
-            StackPanelHand.changeCursor();
-        }
-
-        private void Exited_Minimize(object sender, RoutedEventArgs e) {
-            MinimizeEllipse.Fill = new SolidColorBrush(Colors.Yellow);
-        }
-        #endregion
-
         private void Back_Click(object sender, RoutedEventArgs e) {
             ContentFrame.Navigate(typeof(Main), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
         }

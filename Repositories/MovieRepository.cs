@@ -140,18 +140,86 @@ namespace SerwisFilmowy.Repositories {
         public List<Movies> ReadAll() {
             List<Movies> movies = new List<Movies>();
 
+            using (FbConnection connection = new FbConnection(connectionString)) {
+                try {
+                    connection.Open();
+                    if (connection.State == ConnectionState.Open) {
+                        string dbQuery = "SELECT ID, TITLE, DIRECTOR, STAFF, DESCRIPTION, IMAGE FROM Movies";
+                        using (FbCommand command = new FbCommand(dbQuery, connection)) {
+                            using (FbDataReader reader = command.ExecuteReader()) {
+                                while (reader.Read()) {
+                                    Movies movie = new Movies {
+                                        Id = reader.GetInt32(0),
+                                        Title = reader.GetString(1),
+                                        Director = reader.GetString(2),
+                                        Genre = reader.GetString(3),
+                                        Description = reader.GetString(4),
+                                        Image = (byte[])reader.GetValue(5)
+                                    };
+                                    movies.Add(movie);
+                                }
+                            }
+                        }
+                    }
+                    connection.Close();
+                }
+                catch (Exception ex) {
+                    Console.WriteLine($"Error: {ex.Message}");
+                }
+            }
             return movies;
         }
 
         public bool Update(Movies movie) {
             bool isUpdated = false;
 
+            using (FbConnection connection = new FbConnection(connectionString)) {
+                try {
+                    connection.Open();
+                    if (connection.State == ConnectionState.Open) {
+                        string dbQuery = "UPDATE Movies SET TITLE = @Title, DIRECTOR = @Director, STAFF = @Staff, DESCRIPTION = @Description, IMAGE = @Image WHERE ID = @Id";
+                        using (FbCommand command = new FbCommand(dbQuery, connection)) {
+                            command.Parameters.AddWithValue("@Title", movie.Title);
+                            command.Parameters.AddWithValue("@Director", movie.Director);
+                            command.Parameters.AddWithValue("@Staff", movie.Genre);
+                            command.Parameters.AddWithValue("@Description", movie.Description);
+                            command.Parameters.AddWithValue("@Image", movie.Image);
+                            command.Parameters.AddWithValue("@Id", movie.Id);
+
+                            if (command.ExecuteNonQuery() == 1)
+                                isUpdated = true;
+                        }
+                    }
+                    connection.Close();
+                }
+                catch (Exception ex) {
+                    Console.WriteLine($"Error: {ex.Message}");
+                }
+            }
             return isUpdated;
         }
 
         public bool Delete(Movies movie) {
             bool isDeleted = false;
 
+            using (FbConnection connection = new FbConnection(connectionString)) {
+                try {
+                    connection.Open();
+                    if (connection.State == ConnectionState.Open) {
+                        string dbQuery = "DELETE FROM Movies WHERE ID = @Id";
+                        using (FbCommand command = new FbCommand(dbQuery, connection)) {
+                            command.Parameters.AddWithValue("@Id", movie.Id);
+
+                            if (command.ExecuteNonQuery() == 1)
+                                isDeleted = true;
+                        }
+                    }
+                    connection.Close();
+                }
+                catch (Exception ex) {
+                    Console.WriteLine($"Error: {ex.Message}");
+                }
+            }
             return isDeleted;
         }
     }

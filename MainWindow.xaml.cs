@@ -27,30 +27,11 @@ using SerwisFilmowy.Model;
 using SerwisFilmowy.Repositories;
 using Microsoft.UI.Xaml.Media.Animation;
 
-namespace SerwisFilmowy
-{
+namespace SerwisFilmowy {
 
-    public sealed partial class MainWindow : Window
-    {
+    public sealed partial class MainWindow : Window {
 
-        private List<string> Movies = new List<string>()
-        {
-            "Oppenheimer",
-            "Good Will Hunting",
-            "The Godfather",
-            "The Shawshank Redemption",
-            "The Dark Knight",
-            "Forrest Gump",
-            "The Matrix",
-            "The Lord of the Rings",
-            "Fight Club",
-            "Inception"
-        };
-
-
-
-        public MainWindow()
-        {
+        public MainWindow() {
             this.InitializeComponent();
 
             //(960, 540) V (1280, 720)
@@ -65,6 +46,9 @@ namespace SerwisFilmowy
                 presenter.IsMinimizable = false;
                 presenter.SetBorderAndTitleBar(true, false);
             }
+
+            ContentFrame.Navigate(typeof(Main), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+
         }
 
 
@@ -102,47 +86,11 @@ namespace SerwisFilmowy
         }
         #endregion
 
-        private void Dodaj_Click(object sender, RoutedEventArgs e) {
+    }
 
-            ContentFrame.Navigate(typeof(Create), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
-        }
-
-
-        // Handle text change and present suitable items
-        private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args) {
-            // Since selecting an item will also change the text,
-            // only listen to changes caused by user entering text.
-            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput) {
-                var suitableItems = new List<string>();
-                var splitText = sender.Text.ToLower().Split(" ");
-                foreach (var movie in Movies) {
-                    var found = splitText.All((key) =>
-                    {
-                        return movie.ToLower().Contains(key);
-                    });
-                    if (found) {
-                        suitableItems.Add(movie);
-                    }
-                }
-                if (suitableItems.Count == 0) {
-                    suitableItems.Add("No results found");
-                }
-                sender.ItemsSource = suitableItems;
+        public class StackPanelControls : StackPanel {
+            public void changeCursor() {
+                ProtectedCursor = InputSystemCursor.Create(InputSystemCursorShape.Hand);
             }
         }
-
-        // Handle user selecting an item, in our case just output the selected item.
-        private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args) {
-            SuggestionOutput.Text = args.SelectedItem.ToString();
-        }
-
-    }
-
-
-
-    public class StackPanelControls : StackPanel {
-        public void changeCursor() {
-            ProtectedCursor = InputSystemCursor.Create(InputSystemCursorShape.Hand);
-        }
-    }
 }

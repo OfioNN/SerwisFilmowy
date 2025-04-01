@@ -9,139 +9,30 @@
     mc:Ignorable="d"
     Title="Serwis Filmowy">
 
-    <!--Main Grid-->
-    <Grid Margin="0" Background="#FF24282B" x:Name="mainGrid">
-        
-        
+    <Grid Margin="0">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="0.2*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.35*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="0.05*"/>
+        <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
 
-        <!--Grid Main Content-->
-        <Grid Grid.Column="1" Grid.RowSpan="2" Margin="0">
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.12*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="0.1*"/>
-                </Grid.ColumnDefinitions>
-
-                <Grid Grid.Column="0" x:Name="gridMove"/>
-
-                <local:StackPanelControls x:Name="StackPanelHand" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
-
-                    <Ellipse Name="CloseEllipse" Fill="Red" Height="20" Width="20" Margin="5,0,5,0" PointerPressed="Click_Close" PointerEntered="Entered_Close" PointerExited="Exited_Close"/>
-                    <Ellipse Name="MinimizeEllipse" Fill="Yellow" Height="20" Width="20" PointerPressed="Click_Minimize" PointerEntered="Entered_Minimize" PointerExited="Exited_Minimize"/>
-                </local:StackPanelControls>
-            </Grid>
-
-
-
-                <Grid Grid.Row="1" Margin="50,0,50,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <Grid Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.15*"/>
-                        <RowDefinition Height="0.25*"/>
-                        <RowDefinition Height="0.15*"/>
-                        <RowDefinition Height="0.25*"/>
-                        <RowDefinition Height="0.15*"/>
-                        <RowDefinition Height="0.25*"/>
-                        <RowDefinition Height="0.15*"/>
-                        <RowDefinition Height="0.25*"/>
-                    </Grid.RowDefinitions>
-
-                    <Border Grid.Row="0" Background="Black">
-                        <TextBlock Text="- Tytuł -" Foreground="White" FontSize="12" TextAlignment="Center"/>
-                    </Border>
-                    <Border Grid.Row="1" Background="#FF373737">
-                        <TextBlock Text="Oppenheimer" Foreground="White" FontSize="18" FontWeight="Bold" TextAlignment="Center"/>
-                    </Border>
-                    <Border Grid.Row="2" Background="Black">
-                        <TextBlock Text="- Rok produkcji -" Foreground="White" FontSize="12" TextAlignment="Center"/>
-                    </Border>
-                    <Border Grid.Row="3" Background="#FF373737">
-                        <TextBlock Text="2023" Foreground="White" FontSize="18" FontWeight="Bold" TextAlignment="Center"/>
-                    </Border>
-                    <Border Grid.Row="4" Background="Black">
-                        <TextBlock Text="- Reżyser -" Foreground="White" FontSize="12" TextAlignment="Center"/>
-                    </Border>
-                    <Border Grid.Row="5" Background="#FF373737">
-                        <TextBlock Text="Christopher Nolan" Foreground="White" FontSize="18" FontWeight="Bold" TextAlignment="Center"/>
-                    </Border>
-                    <Border Grid.Row="6" Background="Black">
-                        <TextBlock Text="- Obsada -" Foreground="White" FontSize="12" TextAlignment="Center"/>
-                    </Border>
-                    <Border Grid.Row="7" Background="#FF373737">
-                        <TextBlock Text="Cillian Murphy, Emily Blunt" Foreground="White" FontSize="18" FontWeight="Bold" TextAlignment="Center"/>
-                    </Border>
-
-                </Grid>
-
-                <Border Background="Black">
-                    <Image Grid.Column="0" Source="D:\Nowy folder\Oppek.JPG"/>
-                </Border>
-
-            </Grid>
-
-            <Border Grid.Row="5" Margin="20,10,20,0" CornerRadius="10" Background="#FF373737">
-                <TextBlock  Text='Oppenheimer w czasie II wojny światowej był dyrektorem programu rozwoju broni jądrowej "Manhattan".  Poza działalnością związaną z bronią atomową Oppenheimer miał ogromne osiągnięcia w innych dziedzinach fizyki, między innymi w badaniach czarnych dziur oraz promieniowania kosmicznego. Resztę życia po opracowaniu bomby atomowej poświęcił na działalność na rzecz ograniczania rozprzestrzeniania się broni jądrowej. Był oskarżany przez amerykański rząd i służby o powiązania z ruchem komunistycznym oraz działalność szpiegowską.
-&#x0a;&#x0a;W latach 50. został pozbawiony dostępu do tajnych dokumentów. Dopiero prezydent Kennedy dokonał jego politycznej rehabilitacji. Oppenheimer jest dziś uznawany za jeden z symboli pacyfizmu i sprzeciwu wobec rozprzestrzeniania broni atomowej.' Foreground="White" TextWrapping="Wrap" TextAlignment="Justify" Margin="10"/>
-
-            </Border>
-
-
-        </Grid>
-
-        <!--Grid Left Corner-->
-        <Grid Grid.Column="0" Grid.Row="2">
+        <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.05*"/>
             </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" x:Name="gridMove"/>
 
-            <Button Style="{StaticResource CustomButtonStyle}" Grid.Column="0" Grid.Row="0" Margin="10,20,5,20" Content="Dodaj" Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Arial" CornerRadius="10" Background="#003554" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Dodaj_Click"/>
-            <Button Style="{StaticResource CustomButtonStyle}" Grid.Column="1" Grid.Row="0" Margin="5,20,10,20" Content="Usuń" IsEnabled="False"  Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Arial" CornerRadius="10" Background="#003554" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <local:StackPanelControls x:Name="StackPanelHand" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
 
-        </Grid>
-
-        <Border BorderBrush="Black" CornerRadius="10" BorderThickness="0" VerticalAlignment="Center" Background="#000814" Margin="10,0,10,0">
-            <AutoSuggestBox PlaceholderText="Search movie" QueryIcon="Find" TextChanged="AutoSuggestBox_TextChanged" SuggestionChosen="AutoSuggestBox_SuggestionChosen" x:Name="SuggestionOutput"/>
-        </Border>
-
-        <ListView Grid.Row="1" Grid.Column="0" Margin="10,0,10,0" BorderThickness="3" BorderBrush="Black" Background="#003554" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Arial" Foreground="White" Padding="0,10,0,10" ScrollViewer.HorizontalScrollBarVisibility="Hidden" CornerRadius="15">
-            <ListViewItem>Oppenheimer</ListViewItem>
-        </ListView>
-
-        <Grid Grid.Row="2" Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="0.3*"/>
-            </Grid.ColumnDefinitions>
-
-            <Button Style="{StaticResource CustomButtonStyle}" Grid.Column="1" Margin="10,20,10,20" Content="Edytuj"  Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Arial" CornerRadius="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                <Ellipse Name="CloseEllipse" Fill="Red" Height="20" Width="20" Margin="5,0,5,0" PointerPressed="Click_Close" PointerEntered="Entered_Close" PointerExited="Exited_Close"/>
+                <Ellipse Name="MinimizeEllipse" Fill="Yellow" Height="20" Width="20" PointerPressed="Click_Minimize" PointerEntered="Entered_Minimize" PointerExited="Exited_Minimize"/>
+            </local:StackPanelControls>
 
         </Grid>
 
         <!-- Główna zawartość z Frame -->
-        <Frame x:Name="ContentFrame" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="0">
+        <Frame x:Name="ContentFrame" Grid.Row="1" Margin="0">
             <Frame.ContentTransitions>
                 <TransitionCollection>
                     <NavigationThemeTransition />
@@ -149,6 +40,6 @@
             </Frame.ContentTransitions>
         </Frame>
 
-
     </Grid>
+
 </Window>
