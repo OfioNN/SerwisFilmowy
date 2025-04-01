@@ -47,7 +47,7 @@ namespace SerwisFilmowy {
                 presenter.SetBorderAndTitleBar(true, false);
             }
 
-            ContentFrame.Navigate(typeof(Main), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+            ContentFrame.Navigate(typeof(Main), null, new DrillInNavigationTransitionInfo());
 
         }
 

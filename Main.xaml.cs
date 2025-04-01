@@ -16,6 +16,9 @@ using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI;
 using SerwisFilmowy.Model;
+using SerwisFilmowy.Repositories;
+using Microsoft.UI.Xaml.Media.Imaging;
+using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -27,6 +30,7 @@ namespace SerwisFilmowy
     /// </summary>
     public sealed partial class Main : Page
     {
+        private readonly IMovieRepository _movieRepository = new MovieRepository();
 
         private List<string> Movies = new List<string>()
 {
@@ -52,7 +56,36 @@ namespace SerwisFilmowy
         private void Dodaj_Click(object sender, RoutedEventArgs e) {
 
             ContentFrame.Navigate(typeof(Create), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+        }        
+        
+        private void Usun_Click(object sender, RoutedEventArgs e) {
+            Movies movie = new Movies() { Id = 1 };
+
+            _movieRepository.Delete(movie);
+
+
         }
+
+        private void Edytuj_Click(object sender, RoutedEventArgs e) {
+            ContentFrame.Navigate(typeof(Update), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+        }
+        private async void Proba_Click(object sender, RoutedEventArgs e) {
+             Movies movie = _movieRepository.Read(2);
+
+            titleTxt.Text = movie.Title;
+            directorTxt.Text = movie.Director;
+            castTxt.Text = movie.Genre;
+            descriptionTxt.Text = movie.Description;
+            if (movie.Image != null && movie.Image.Length > 0) {
+                BitmapImage bitmapImage = new BitmapImage();
+                using (MemoryStream ms = new MemoryStream(movie.Image)) {
+                    await bitmapImage.SetSourceAsync(ms.AsRandomAccessStream());
+                }
+                poster.Source = bitmapImage;
+            }
+        }
+
+
 
 
         // Handle text change and present suitable items
