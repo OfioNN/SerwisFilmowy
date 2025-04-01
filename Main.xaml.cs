@@ -19,6 +19,7 @@ using SerwisFilmowy.Model;
 using SerwisFilmowy.Repositories;
 using Microsoft.UI.Xaml.Media.Imaging;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -43,6 +44,7 @@ namespace SerwisFilmowy
                 listView.Items.Add(movie.Title);
                 moviesListTitle.Add(movie.Title);
             }
+
         }
 
 
@@ -62,8 +64,14 @@ namespace SerwisFilmowy
         private void Edytuj_Click(object sender, RoutedEventArgs e) {
             ContentFrame.Navigate(typeof(Update), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }
-        private async void Proba_Click(object sender, RoutedEventArgs e) {
-            Movies movie = _movieRepository.Read(2);
+
+        private async void listView_ItemClick(object sender, ItemClickEventArgs e) {
+
+
+            string selectedTitle = (string)e.ClickedItem;
+
+            Movies movie = _movieRepository.Read(selectedTitle); 
+
 
             titleTxt.Text = movie.Title;
             directorTxt.Text = movie.Director;
@@ -77,8 +85,6 @@ namespace SerwisFilmowy
                 poster.Source = bitmapImage;
             }
         }
-
-
 
 
         // Handle text change and present suitable items
@@ -107,7 +113,6 @@ namespace SerwisFilmowy
         private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args) {
             SuggestionOutput.Text = args.SelectedItem.ToString();
         }
-
     }
 }
 

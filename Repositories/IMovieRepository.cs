@@ -10,7 +10,7 @@ namespace SerwisFilmowy.Repositories
     interface IMovieRepository
     {
         bool Create(Movies movie);
-        Movies Read(int Id);
+        Movies Read(string Title);
         List<Movies> ReadAll();
         bool Update(Movies movie);
         bool Delete(Movies movie);

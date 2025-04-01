@@ -100,7 +100,7 @@ namespace SerwisFilmowy.Repositories {
             return isCreated;
         }
 
-        public Movies Read(int Id) {
+        public Movies Read(string Title) {
             Movies movie = new Movies();
 
             using (FbConnection connection = new FbConnection(connectionString)) {
@@ -108,10 +108,10 @@ namespace SerwisFilmowy.Repositories {
                     connection.Open();
                     if (connection.State == ConnectionState.Open) {
 
-                        string dbQuery = "SELECT ID, TITLE, DIRECTOR, STAFF, DESCRIPTION, IMAGE FROM Movies WHERE ID = @Id";
+                        string dbQuery = "SELECT ID, TITLE, DIRECTOR, STAFF, DESCRIPTION, IMAGE FROM Movies WHERE TITLE = @Title";
 
                         using (FbCommand command = new FbCommand(dbQuery, connection)) {
-                            command.Parameters.Add("@Id", FbDbType.Integer).Value = Id;
+                            command.Parameters.Add("@Title", FbDbType.VarChar).Value = Title;
 
                             using (FbDataReader reader = command.ExecuteReader()) {
                                 if (reader.Read()) {
