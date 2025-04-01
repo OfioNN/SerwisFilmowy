@@ -25,6 +25,7 @@ using Windows.UI.WindowManagement;
 using System.Runtime.InteropServices;
 using SerwisFilmowy.Model;
 using SerwisFilmowy.Repositories;
+using Microsoft.UI.Xaml.Media.Animation;
 
 namespace SerwisFilmowy
 {
@@ -52,7 +53,8 @@ namespace SerwisFilmowy
         {
             this.InitializeComponent();
 
-            this.AppWindow.Resize(new SizeInt32(960, 540));
+            //(960, 540) V (1280, 720)
+            this.AppWindow.Resize(new SizeInt32(1280, 720));
 
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(gridMove);
@@ -102,7 +104,7 @@ namespace SerwisFilmowy
 
         private void Dodaj_Click(object sender, RoutedEventArgs e) {
 
-            ContentFrame.Navigate(typeof(Create), null);
+            ContentFrame.Navigate(typeof(Create), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }
 
 

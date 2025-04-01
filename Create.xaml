@@ -84,7 +84,16 @@
 
         </Grid>
 
-        <Button Style="{StaticResource CustomButtonStyle}" Grid.Column="0" Grid.Row="2" Margin="25,10,150,10" Content="Wstecz" Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Arial"/>
+        <Button Style="{StaticResource CustomButtonStyle}" Grid.Column="0" Grid.Row="2" Margin="25,10,150,10" Content="Wstecz" Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Arial" Click="Back_Click"/>
+
+        <!-- Główna zawartość z Frame -->
+        <Frame x:Name="ContentFrame" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0">
+            <Frame.ContentTransitions>
+                <TransitionCollection>
+                    <NavigationThemeTransition />
+                </TransitionCollection>
+            </Frame.ContentTransitions>
+        </Frame>
 
     </Grid>
 </Page>

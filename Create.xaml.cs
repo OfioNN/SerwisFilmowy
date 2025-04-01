@@ -17,6 +17,7 @@ using Microsoft.UI;
 using SerwisFilmowy.Repositories;
 using SerwisFilmowy.Model;
 using Windows.Storage.Pickers;
+using Microsoft.UI.Xaml.Media.Animation;
 
 namespace SerwisFilmowy
 {
@@ -68,7 +69,13 @@ namespace SerwisFilmowy
         }
         #endregion
 
-        private async void Save_Click(object sender, RoutedEventArgs e) {
+        private void Back_Click(object sender, RoutedEventArgs e) {
+            ContentFrame.Navigate(typeof(Main), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
+        }
+
+
+
+        private void Save_Click(object sender, RoutedEventArgs e) {
             Movies movie = new Movies() { Title = TitleBox.Text, Director = DirectorBox.Text, Genre = YearBox.Text, Description = DescriptionBox.Text, Image = _selectedImageBytes };
 
             _movieRepository.Create(movie);

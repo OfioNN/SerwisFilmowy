@@ -21,18 +21,15 @@ namespace SerwisFilmowy.Repositories {
         public MovieRepository() {
 
 
-            // Tworzenie folderu, jeśli nie istnieje
             if (!Directory.Exists(folderPath)) {
                 Directory.CreateDirectory(folderPath);
             }
 
-            // Tworzenie bazy danych, jeśli nie istnieje
             if (!File.Exists(dbPath)) {
                 try {
 
                     FbConnection.CreateDatabase(connectionString);
 
-                    // Połączenie z bazą danych
                     using (FbConnection connection = new FbConnection(connectionString)) {
                         try {
                             connection.Open();
@@ -63,6 +60,7 @@ namespace SerwisFilmowy.Repositories {
         }
 
 
+        // Uzupełnić
         private bool IsDatabaseExist() {
             bool isExist = false;
 
@@ -104,6 +102,37 @@ namespace SerwisFilmowy.Repositories {
 
         public Movies Read(int Id) {
             Movies movie = new Movies();
+
+            using (FbConnection connection = new FbConnection(connectionString)) {
+                try {
+                    connection.Open();
+                    if (connection.State == ConnectionState.Open) {
+
+                        string dbQuery = "SELECT ID, TITLE, DIRECTOR, STAFF, DESCRIPTION, IMAGE FROM Movies WHERE ID = @Id";
+
+                        using (FbCommand command = new FbCommand(dbQuery, connection)) {
+                            command.Parameters.Add("@Id", FbDbType.Integer).Value = Id;
+
+                            using (FbDataReader reader = command.ExecuteReader()) {
+                                if (reader.Read()) {
+
+                                    movie.Id = reader.GetInt32(0);
+                                    movie.Title = reader.GetString(1);
+                                    movie.Director = reader.GetString(2);
+                                    movie.Genre = reader.GetString(3);
+                                    movie.Description = reader.GetString(4);
+                                    movie.Image = (byte[])reader.GetValue(5);
+
+                                }
+                            }
+                        }
+                    }
+                    connection.Close();
+                }
+                catch (Exception ex) {
+                    Console.WriteLine($"Error: {ex.Message}");
+                }
+            }
 
             return movie;
         }
