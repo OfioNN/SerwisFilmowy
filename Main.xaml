@@ -54,41 +54,46 @@
                         <TextBlock Text="- Tytuł -" Foreground="White" FontSize="12" TextAlignment="Center"/>
                     </Border>
                     <Border Grid.Row="1" Background="#FF373737">
-                        <TextBlock x:Name="titleTxt" Text="Oppenheimer" Foreground="White" FontSize="18" FontWeight="Bold" TextAlignment="Center"/>
+                        <TextBlock x:Name="titleTxt" Foreground="White" FontSize="18" FontWeight="Bold" TextAlignment="Center"/>
                     </Border>
                     <Border Grid.Row="2" Background="Black">
                         <TextBlock Text="- Rok produkcji -" Foreground="White" FontSize="12" TextAlignment="Center"/>
                     </Border>
                     <Border Grid.Row="3" Background="#FF373737">
-                        <TextBlock x:Name="yearTxt" Text="2023" Foreground="White" FontSize="18" FontWeight="Bold" TextAlignment="Center"/>
+                        <TextBlock x:Name="yearTxt" Foreground="White" FontSize="18" FontWeight="Bold" TextAlignment="Center"/>
                     </Border>
                     <Border Grid.Row="4" Background="Black">
                         <TextBlock Text="- Reżyser -" Foreground="White" FontSize="12" TextAlignment="Center"/>
                     </Border>
                     <Border Grid.Row="5" Background="#FF373737">
-                        <TextBlock x:Name="directorTxt" Text="Christopher Nolan" Foreground="White" FontSize="18" FontWeight="Bold" TextAlignment="Center"/>
+                        <TextBlock x:Name="directorTxt" Foreground="White" FontSize="18" FontWeight="Bold" TextAlignment="Center"/>
                     </Border>
                     <Border Grid.Row="6" Background="Black">
                         <TextBlock Text="- Obsada -" Foreground="White" FontSize="12" TextAlignment="Center"/>
                     </Border>
                     <Border Grid.Row="7" Background="#FF373737">
-                        <TextBlock x:Name="castTxt" Text="Cillian Murphy, Emily Blunt" Foreground="White" FontSize="18" FontWeight="Bold" TextAlignment="Center"/>
+                        <TextBlock x:Name="castTxt" Foreground="White" FontSize="18" FontWeight="Bold" TextAlignment="Center"/>
                     </Border>
 
                 </Grid>
 
                 <Border Background="Black">
-                    <Image Grid.Column="0" x:Name="poster" Source="D:\Nowy folder\Oppek.JPG"/>
+                    <Image Grid.Column="0" x:Name="poster"/>
                 </Border>
 
             </Grid>
 
-            <Border Grid.Row="5" Margin="20,10,20,0" CornerRadius="10" Background="#FF373737">
-                <TextBlock  x:Name="descriptionTxt" Text='Oppenheimer w czasie II wojny światowej był dyrektorem programu rozwoju broni jądrowej "Manhattan".  Poza działalnością związaną z bronią atomową Oppenheimer miał ogromne osiągnięcia w innych dziedzinach fizyki, między innymi w badaniach czarnych dziur oraz promieniowania kosmicznego. Resztę życia po opracowaniu bomby atomowej poświęcił na działalność na rzecz ograniczania rozprzestrzeniania się broni jądrowej. Był oskarżany przez amerykański rząd i służby o powiązania z ruchem komunistycznym oraz działalność szpiegowską.
-&#x0a;&#x0a;W latach 50. został pozbawiony dostępu do tajnych dokumentów. Dopiero prezydent Kennedy dokonał jego politycznej rehabilitacji. Oppenheimer jest dziś uznawany za jeden z symboli pacyfizmu i sprzeciwu wobec rozprzestrzeniania broni atomowej.' Foreground="White" TextWrapping="Wrap" TextAlignment="Justify" Margin="10"/>
+            <Border Grid.Row="5" Margin="20,10,20,0" 
+                    CornerRadius="10" 
+                    Background="#FF373737">
+
+                <TextBlock x:Name="descriptionTxt" 
+                           Foreground="White" 
+                           TextWrapping="Wrap" 
+                           TextAlignment="Justify" 
+                           Margin="10"/>
 
             </Border>
-
 
         </Grid>
 
@@ -99,32 +104,64 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Style="{StaticResource CustomButtonStyle}" Grid.Column="0" Grid.Row="0" Margin="10,20,5,20" Content="Dodaj" Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Arial" CornerRadius="10" Background="#003554" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Dodaj_Click"/>
-            <Button Style="{StaticResource CustomButtonStyle}" Grid.Column="1" Grid.Row="0" Margin="5,20,10,20" Content="Usuń"  Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Arial" CornerRadius="10" Background="#003554" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Usun_Click"/>
+            <Button Style="{StaticResource CustomButtonStyle}" 
+                    Grid.Column="0" Grid.Row="0" Margin="10,20,5,20" 
+                    Content="Dodaj" 
+                    Foreground="White" 
+                    FontWeight="Bold" 
+                    FontSize="14" 
+                    FontFamily="Arial" 
+                    CornerRadius="10" 
+                    Background="#003554" 
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                    Click="Dodaj_Click"/>
+            
+            <Button Style="{StaticResource CustomButtonStyle}" 
+                    Grid.Column="1" Grid.Row="0" Margin="5,20,10,20" 
+                    Content="Usuń"  
+                    Foreground="White" 
+                    FontWeight="Bold" 
+                    FontSize="14" 
+                    FontFamily="Arial" 
+                    CornerRadius="10"
+                    Background="#003554" 
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                    Click="Usun_Click" 
+                    IsEnabled="False" 
+                    x:Name="usunBtn"/>
 
         </Grid>
 
-        <Border BorderBrush="Black" CornerRadius="10" BorderThickness="0" VerticalAlignment="Center" Background="#000814" Margin="10,0,10,0">
-            <AutoSuggestBox PlaceholderText="Search movie" QueryIcon="Find" TextChanged="AutoSuggestBox_TextChanged" SuggestionChosen="AutoSuggestBox_SuggestionChosen" x:Name="SuggestionOutput"/>
+        <Border BorderBrush="Black" 
+                CornerRadius="10" 
+                BorderThickness="0" 
+                VerticalAlignment="Center" 
+                Background="#000814" 
+                Margin="10,0,10,0">
+            
+            <AutoSuggestBox x:Name="SuggestionOutput"
+                PlaceholderText="Search movie" 
+                QueryIcon="Find" 
+                TextChanged="AutoSuggestBox_TextChanged" 
+                SuggestionChosen="AutoSuggestBox_SuggestionChosen"/>
         </Border>
 
         <ListView x:Name="listView" 
-          Grid.Row="1" Grid.Column="0" 
-          Margin="10,0,10,0" 
-          BorderThickness="3" 
-          BorderBrush="Black" 
-          Background="#003554" 
-          HorizontalContentAlignment="Center" 
-          FontSize="14" 
-          FontWeight="Bold" 
-          FontFamily="Arial" 
-          Foreground="White" 
-          Padding="0,10,0,10" 
-          ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
-          CornerRadius="15" 
-                  IsItemClickEnabled="True"
-          ItemClick="listView_ItemClick">
-            
+            Grid.Row="1" Grid.Column="0" 
+            Margin="10,0,10,0" 
+            BorderThickness="3" 
+            BorderBrush="Black" 
+            Background="#003554" 
+            HorizontalContentAlignment="Center" 
+            FontSize="14" 
+            FontWeight="Bold" 
+            FontFamily="Arial" 
+            Foreground="White" 
+            Padding="0,10,0,10" 
+            ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+            CornerRadius="15" 
+            IsItemClickEnabled="True"
+            ItemClick="listView_ItemClick">
         </ListView>
 
 
@@ -135,7 +172,17 @@
                 <ColumnDefinition Width="0.3*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Style="{StaticResource CustomButtonStyle}" Grid.Column="1" Margin="10,20,10,20" Content="Edytuj"  Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Arial" CornerRadius="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Edytuj_Click"/>
+            <Button Style="{StaticResource CustomButtonStyle}" 
+                    Grid.Column="1" Margin="10,20,10,20" 
+                    Content="Edytuj"  
+                    Foreground="White" 
+                    FontWeight="Bold" 
+                    FontSize="14" 
+                    FontFamily="Arial" 
+                    CornerRadius="10" 
+                    HorizontalAlignment="Stretch" 
+                    VerticalAlignment="Stretch" 
+                    Click="Edytuj_Click"/>
 
         </Grid>
 

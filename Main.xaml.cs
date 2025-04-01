@@ -20,6 +20,7 @@ using SerwisFilmowy.Repositories;
 using Microsoft.UI.Xaml.Media.Imaging;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using Windows.Graphics.Printing;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -33,50 +34,63 @@ namespace SerwisFilmowy
         private readonly IMovieRepository _movieRepository = new MovieRepository();
 
         private List<string> moviesListTitle = new List<string>();
-
+        List<Movies> moviesList = new List<Movies>();
+        public string selectedTitle;
 
         public Main() {
             this.InitializeComponent();
 
-            List<Movies> moviesList = _movieRepository.ReadAll();
+            readList();
+
+        }
+
+        public void readList() {
+            moviesList.Clear();
+            listView.Items.Clear();
+
+            moviesList = _movieRepository.ReadAll();
+            moviesList = moviesList.OrderBy(x => x.Title).ToList();
 
             foreach (var movie in moviesList) {
                 listView.Items.Add(movie.Title);
                 moviesListTitle.Add(movie.Title);
             }
-
         }
 
 
         private void Dodaj_Click(object sender, RoutedEventArgs e) {
 
-            ContentFrame.Navigate(typeof(Create), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+            ContentFrame.Navigate(typeof(Create), this, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
         }
 
         private void Usun_Click(object sender, RoutedEventArgs e) {
-            Movies movie = new Movies() { Id = 1 };
+            Movies movie = new Movies() { Title = selectedTitle };
 
             _movieRepository.Delete(movie);
+            usunBtn.IsEnabled = false;
 
-
+            readList();
         }
 
         private void Edytuj_Click(object sender, RoutedEventArgs e) {
-            ContentFrame.Navigate(typeof(Update), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+            ContentFrame.Navigate(typeof(Update), this, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+
+
         }
 
         private async void listView_ItemClick(object sender, ItemClickEventArgs e) {
 
+            selectedTitle = (string)e.ClickedItem;
 
-            string selectedTitle = (string)e.ClickedItem;
 
-            Movies movie = _movieRepository.Read(selectedTitle); 
 
+            Movies movie = _movieRepository.Read(selectedTitle);
 
             titleTxt.Text = movie.Title;
             directorTxt.Text = movie.Director;
             castTxt.Text = movie.Genre;
             descriptionTxt.Text = movie.Description;
+
             if (movie.Image != null && movie.Image.Length > 0) {
                 BitmapImage bitmapImage = new BitmapImage();
                 using (MemoryStream ms = new MemoryStream(movie.Image)) {
@@ -84,7 +98,12 @@ namespace SerwisFilmowy
                 }
                 poster.Source = bitmapImage;
             }
+
+            usunBtn.IsEnabled = true;
         }
+
+
+        
 
 
         // Handle text change and present suitable items

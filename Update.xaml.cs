@@ -16,6 +16,8 @@ using Microsoft.UI.Xaml.Media.Animation;
 using SerwisFilmowy.Model;
 using Windows.Storage.Pickers;
 using SerwisFilmowy.Repositories;
+using Microsoft.UI.Xaml.Media.Imaging;
+using System.Reflection;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -30,6 +32,8 @@ namespace SerwisFilmowy
         private readonly IMovieRepository _movieRepository = new MovieRepository();
 
         private byte[] _selectedImageBytes;
+
+        private Main _main;
 
         public Update()
         {
@@ -80,6 +84,20 @@ namespace SerwisFilmowy
 
             //re-enable the button
             senderButton.IsEnabled = true;
+
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
+            if (e.Parameter is Main main) {
+                _main = main;
+            }
+
+            Movies movie = _movieRepository.Read(_main.selectedTitle);
+
+            TitleBox.Text = movie.Title;
+            DirectorBox.Text = movie.Director;
+            YearBox.Text = movie.Genre;
+            DescriptionBox.Text = movie.Description;
 
         }
 

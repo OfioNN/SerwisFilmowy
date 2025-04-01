@@ -28,6 +28,8 @@ namespace SerwisFilmowy
 
         private byte[] _selectedImageBytes;
 
+        private Main _main;
+
         public Create()
         {
             this.InitializeComponent();
@@ -35,7 +37,7 @@ namespace SerwisFilmowy
         }
 
         private void Back_Click(object sender, RoutedEventArgs e) {
-            ContentFrame.Navigate(typeof(Main), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
+            ContentFrame.Navigate(typeof(Main), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }
 
 
@@ -44,6 +46,8 @@ namespace SerwisFilmowy
             Movies movie = new Movies() { Title = TitleBox.Text, Director = DirectorBox.Text, Genre = YearBox.Text, Description = DescriptionBox.Text, Image = _selectedImageBytes };
 
             _movieRepository.Create(movie);
+
+            _main.readList();
         }
 
         private async void LoadImage_Click(object sender, RoutedEventArgs e) {
@@ -79,6 +83,12 @@ namespace SerwisFilmowy
             //re-enable the button
             senderButton.IsEnabled = true;
 
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
+            if (e.Parameter is Main main) {
+                _main = main;
+            }
         }
     }
 }
