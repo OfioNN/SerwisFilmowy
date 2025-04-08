@@ -33,7 +33,7 @@ namespace SerwisFilmowy
     public sealed partial class Main : Page {
         private readonly IMovieRepository _movieRepository = new MovieRepository();
 
-        private List<string> moviesListTitle = new List<string>();
+        public List<string> moviesListTitle = new List<string>();
         List<Movies> moviesList = new List<Movies>();
         public string selectedTitle;
 
@@ -138,19 +138,21 @@ namespace SerwisFilmowy
 
             string selectedTitle = args.SelectedItem.ToString();
 
-            // ZnajdŸ element pasuj¹cy do tytu³u
-            var selectedItem = listView.Items.Cast<string>().FirstOrDefault(item => item == selectedTitle);
+            if (selectedTitle != "No results found") {
+                // ZnajdŸ element pasuj¹cy do tytu³u
+                var selectedItem = listView.Items.Cast<string>().FirstOrDefault(item => item == selectedTitle);
 
-            if (selectedItem != null) {
-                // Zaznacz element
-                listView.SelectedItem = selectedItem;
+                if (selectedItem != null) {
+                    // Zaznacz element
+                    listView.SelectedItem = selectedItem;
 
-                // Przewiñ do zaznaczonego
-                listView.ScrollIntoView(selectedItem);
+                    // Przewiñ do zaznaczonego
+                    listView.ScrollIntoView(selectedItem);
+                }
+
+                // Wyœwietl dane
+                DisplayMovieDetails(selectedTitle);
             }
-
-            // Wyœwietl dane
-            DisplayMovieDetails(selectedTitle);
         }
 
         private void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args) {

@@ -19,6 +19,7 @@ using SerwisFilmowy.Model;
 using Windows.Storage.Pickers;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Media.Imaging;
+using System.Drawing;
 
 namespace SerwisFilmowy
 {
@@ -30,6 +31,8 @@ namespace SerwisFilmowy
         private byte[] _selectedImageBytes;
 
         private Main _main;
+
+        private bool canSave = true;
 
         public Create()
         {
@@ -44,14 +47,68 @@ namespace SerwisFilmowy
 
 
         private void Save_Click(object sender, RoutedEventArgs e) {
-            Movies movie = new Movies() { Title = TitleBox.Text, Genre = GenereBox.Text, Year = int.Parse(YearBox.Text), Director = DirectorBox.Text, Staff = CastBox.Text, Description = DescriptionBox.Text, Image = _selectedImageBytes };
 
-            _movieRepository.Create(movie);
+            CanSave();
 
-            _main.readList();
+            if (canSave) {
+                Movies movie = new Movies() { Title = TitleBox.Text, Genre = GenereBox.Text, Year = int.Parse(YearBox.Text), Director = DirectorBox.Text, Staff = CastBox.Text, Description = DescriptionBox.Text, Image = _selectedImageBytes };
 
-            ContentFrame.Navigate(typeof(Main), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+                _movieRepository.Create(movie);
+
+                _main.readList();
+
+                ContentFrame.Navigate(typeof(Main), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+            }
+
         }
+
+        private void CanSave() {
+            if (TitleBox.Text == "" || GenereBox.Text == "" || YearBox.Text == "" || DirectorBox.Text == "" || CastBox.Text == "" || DescriptionBox.Text == "" || _selectedImageBytes == null) {
+                canSave = false;
+            }
+            else {
+                canSave = true;
+            }
+        }
+   
+        
+        private void TitleLostFocus(object sender, RoutedEventArgs e) {
+            if(_main.moviesListTitle.Contains(TitleBox.Text)) {
+                TitleBox.BorderBrush = new SolidColorBrush(Windows.UI.Color.FromArgb(100,255,0,0));
+                TitleBox.BorderThickness = new Thickness(2);
+                canSave = false;
+            }
+            else {
+                TitleBox.BorderThickness = new Thickness(0);
+                canSave = true;
+            }
+        }
+
+
+        private void YearTxtPreviewKeyDown(object sender, Microsoft.UI.Xaml.Input.KeyRoutedEventArgs e) {
+            if (!char.IsDigit((char)e.Key) && e.Key != Windows.System.VirtualKey.Back && e.Key != Windows.System.VirtualKey.Tab && 
+                e.Key != Windows.System.VirtualKey.Home && e.Key != Windows.System.VirtualKey.End && 
+                e.Key != Windows.System.VirtualKey.Control && e.Key != Windows.System.VirtualKey.Left && e.Key != Windows.System.VirtualKey.Right) {
+
+                e.Handled = true;
+            }
+        }
+
+        
+        private void YearTxtLostFocus(object sender, RoutedEventArgs e) {
+            if (int.Parse(YearBox.Text) > 2030 || int.Parse(YearBox.Text) < 1888) {
+                YearBox.BorderBrush = new SolidColorBrush(Windows.UI.Color.FromArgb(100, 255, 0, 0));
+                YearBox.BorderThickness = new Thickness(2);
+                canSave = false;
+            }
+            else {
+                YearBox.BorderThickness = new Thickness(0);
+                canSave = true;
+            }
+        }
+
+
+
 
         private async void LoadImage_Click(object sender, RoutedEventArgs e) {
             //disable the button to avoid double-clicking

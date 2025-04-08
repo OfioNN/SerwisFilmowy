@@ -35,6 +35,8 @@ namespace SerwisFilmowy
 
         private Main _main;
 
+        private bool canSave = true;
+
         public Update()
         {
             this.InitializeComponent();
@@ -47,13 +49,29 @@ namespace SerwisFilmowy
 
 
         private void Save_Click(object sender, RoutedEventArgs e) {
-            Movies movie = new Movies() { Title = TitleBox.Text, Genre = GenereBox.Text, Year = int.Parse(YearBox.Text), Director = DirectorBox.Text, Staff = CastBox.Text, Description = DescriptionBox.Text, Image = _selectedImageBytes };
+            if (canSave) {
+                Movies movie = new Movies() { Title = TitleBox.Text, Genre = GenereBox.Text, Year = int.Parse(YearBox.Text), Director = DirectorBox.Text, Staff = CastBox.Text, Description = DescriptionBox.Text, Image = _selectedImageBytes };
 
-            _movieRepository.Update(movie, _main.selectedTitle);
+                _movieRepository.Update(movie, _main.selectedTitle);
 
-            _main.readList();
+                _main.readList();
 
-            ContentFrame.Navigate(typeof(Main), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
+                ContentFrame.Navigate(typeof(Main), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
+
+            }
+
+        }
+
+        private void TitleLostFocus(object sender, RoutedEventArgs e) {
+            if (_main.moviesListTitle.Contains(TitleBox.Text)) {
+                TitleBox.BorderBrush = new SolidColorBrush(Windows.UI.Color.FromArgb(100, 255, 0, 0));
+                TitleBox.BorderThickness = new Thickness(2);
+                canSave = false;
+            }
+            else {
+                TitleBox.BorderThickness = new Thickness(0);
+                canSave = true;
+            }
         }
 
         private async void LoadImage_Click(object sender, RoutedEventArgs e) {

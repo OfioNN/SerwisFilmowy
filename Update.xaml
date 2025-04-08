@@ -38,7 +38,7 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" Text="- Tytuł -" Foreground="White" FontSize="12" Padding="0"/>
-            <TextBox x:Name="TitleBox" Grid.Column="0" Grid.Row="1" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0"/>
+            <TextBox x:Name="TitleBox" Grid.Column="0" Grid.Row="1" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0" LostFocus="TitleLostFocus"/>
             <TextBlock Grid.Row="2" Text="- Gatunek -" Foreground="White" FontSize="12" Padding="0"/>
             <TextBox x:Name="GenereBox" Grid.Column="0" Grid.Row="3" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0"/>
             <TextBlock Grid.Row="4" Text="- Rok produkcji -" Foreground="White" FontSize="12" Padding="0"/>
