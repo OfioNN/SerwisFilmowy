@@ -67,7 +67,6 @@ namespace SerwisFilmowy.Repositories {
 
         }
 
-
         public bool Create(Movies movie) {
             bool isCreated = false;
 
@@ -77,7 +76,10 @@ namespace SerwisFilmowy.Repositories {
 
                     if (connection.State == ConnectionState.Open) {
 
-                        string dbQuery = $"INSERT INTO Movies (TITLE, DIRECTOR, STAFF, DESCRIPTION, IMAGE) VALUES ('{movie.Title}', '{movie.Director}', '{movie.Genre}', '{movie.Description}', @Image);";
+                        string dbQuery = @$"INSERT INTO Movies 
+                                        (TITLE, GENRE, RELASE, DIRECTOR, STAFF, DESCRIPTION, IMAGE) 
+                                        VALUES 
+                                        ('{movie.Title}', '{movie.Genre}', '{movie.Year}', '{movie.Director}', '{movie.Staff}', '{movie.Description}', @Image);";
 
                         using (FbCommand command = new FbCommand(dbQuery, connection)) {
 
