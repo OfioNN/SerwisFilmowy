@@ -82,14 +82,14 @@ namespace SerwisFilmowy
 
             selectedTitle = (string)e.ClickedItem;
 
-
-
             Movies movie = _movieRepository.Read(selectedTitle);
 
             titleTxt.Text = movie.Title;
             directorTxt.Text = movie.Director;
             castTxt.Text = movie.Genre;
             descriptionTxt.Text = movie.Description;
+
+            yearTxt.Text = "2023";
 
             if (movie.Image != null && movie.Image.Length > 0) {
                 BitmapImage bitmapImage = new BitmapImage();

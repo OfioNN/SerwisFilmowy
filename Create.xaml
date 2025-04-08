@@ -57,7 +57,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Text="- Opis -" Foreground="White" FontSize="12" Padding="0"/>
-                <TextBox x:Name="DescriptionBox" Grid.Column="0" Grid.Row="1" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0" TextWrapping="Wrap"/>
+                <TextBox x:Name="DescriptionBox" AcceptsReturn="True" Grid.Column="0" Grid.Row="1" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0" TextWrapping="Wrap"/>
         </Grid>
 
             <Rectangle Grid.Row="1" Fill="#FF191919" Margin="200,50,200,50"/>

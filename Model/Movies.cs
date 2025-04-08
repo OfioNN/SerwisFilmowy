@@ -13,6 +13,7 @@ namespace SerwisFilmowy.Model
         public string Genre { get; set; }
         public int Year { get; set; }
         public string Director { get; set; }
+        public string Staff { get; set; }
         public string Description { get; set; }
         public byte[] Image { get; set; }
     }

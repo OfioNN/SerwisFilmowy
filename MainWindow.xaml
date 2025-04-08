@@ -19,7 +19,7 @@
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="0.05*"/>
+                <ColumnDefinition Width="0.08*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" x:Name="gridMove"/>
 
