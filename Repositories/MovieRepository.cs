@@ -111,7 +111,10 @@ namespace SerwisFilmowy.Repositories {
                     connection.Open();
                     if (connection.State == ConnectionState.Open) {
 
-                        string dbQuery = "SELECT ID, TITLE, DIRECTOR, STAFF, DESCRIPTION, IMAGE FROM Movies WHERE TITLE = @Title";
+                        string dbQuery = @"SELECT 
+                                        ID, TITLE, GENRE, RELASE, DIRECTOR, STAFF, DESCRIPTION, IMAGE
+                                        FROM Movies WHERE 
+                                        TITLE = @Title";
 
                         using (FbCommand command = new FbCommand(dbQuery, connection)) {
                             command.Parameters.Add("@Title", FbDbType.VarChar).Value = Title;
@@ -121,10 +124,12 @@ namespace SerwisFilmowy.Repositories {
 
                                     movie.Id = reader.GetInt32(0);
                                     movie.Title = reader.GetString(1);
-                                    movie.Director = reader.GetString(2);
-                                    movie.Genre = reader.GetString(3);
-                                    movie.Description = reader.GetString(4);
-                                    movie.Image = (byte[])reader.GetValue(5);
+                                    movie.Genre = reader.GetString(2);
+                                    movie.Year = reader.GetInt32(3);
+                                    movie.Director = reader.GetString(4);
+                                    movie.Staff = reader.GetString(5);
+                                    movie.Description = reader.GetString(6);
+                                    movie.Image = (byte[])reader.GetValue(7);
 
                                 }
                             }
@@ -147,17 +152,23 @@ namespace SerwisFilmowy.Repositories {
                 try {
                     connection.Open();
                     if (connection.State == ConnectionState.Open) {
-                        string dbQuery = "SELECT ID, TITLE, DIRECTOR, STAFF, DESCRIPTION, IMAGE FROM Movies";
+
+                        string dbQuery = @"SELECT 
+                                        ID, TITLE, GENRE, RELASE, DIRECTOR, STAFF, DESCRIPTION, IMAGE
+                                        FROM Movies";
+
                         using (FbCommand command = new FbCommand(dbQuery, connection)) {
                             using (FbDataReader reader = command.ExecuteReader()) {
                                 while (reader.Read()) {
                                     Movies movie = new Movies {
                                         Id = reader.GetInt32(0),
                                         Title = reader.GetString(1),
-                                        Director = reader.GetString(2),
-                                        Genre = reader.GetString(3),
-                                        Description = reader.GetString(4),
-                                        Image = (byte[])reader.GetValue(5)
+                                        Genre = reader.GetString(2),
+                                        Year = reader.GetInt32(3),
+                                        Director = reader.GetString(4),
+                                        Staff = reader.GetString(5),
+                                        Description = reader.GetString(6),
+                                        Image = (byte[])reader.GetValue(7)
                                     };
                                     movies.Add(movie);
                                 }
@@ -180,11 +191,18 @@ namespace SerwisFilmowy.Repositories {
                 try {
                     connection.Open();
                     if (connection.State == ConnectionState.Open) {
-                        string dbQuery = "UPDATE Movies SET TITLE = @Title, DIRECTOR = @Director, STAFF = @Staff, DESCRIPTION = @Description, IMAGE = @Image WHERE ID = @Id";
+                        
+                        string dbQuery = @"UPDATE Movies SET 
+                                        TITLE = @Title, GENRE = @Genre, RELASE = @Year, DIRECTOR = @Director, STAFF = @Staff, DESCRIPTION = @Description, IMAGE = @Image 
+                                        WHERE 
+                                        ID = @Id";
+                        
                         using (FbCommand command = new FbCommand(dbQuery, connection)) {
                             command.Parameters.AddWithValue("@Title", movie.Title);
+                            command.Parameters.AddWithValue("@Genre", movie.Genre);
+                            command.Parameters.AddWithValue("@Year", movie.Year);
                             command.Parameters.AddWithValue("@Director", movie.Director);
-                            command.Parameters.AddWithValue("@Staff", movie.Genre);
+                            command.Parameters.AddWithValue("@Staff", movie.Staff);
                             command.Parameters.AddWithValue("@Description", movie.Description);
                             command.Parameters.AddWithValue("@Image", movie.Image);
                             command.Parameters.AddWithValue("@Id", movie.Id);
@@ -209,7 +227,11 @@ namespace SerwisFilmowy.Repositories {
                 try {
                     connection.Open();
                     if (connection.State == ConnectionState.Open) {
-                        string dbQuery = "DELETE FROM Movies WHERE TITLE = @Title";
+
+                        string dbQuery = @"DELETE FROM Movies 
+                                        WHERE 
+                                        TITLE = @Title";
+
                         using (FbCommand command = new FbCommand(dbQuery, connection)) {
                             command.Parameters.AddWithValue("@Title", movie.Title);
 

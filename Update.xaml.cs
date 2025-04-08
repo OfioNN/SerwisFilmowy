@@ -47,7 +47,7 @@ namespace SerwisFilmowy
 
 
         private void Save_Click(object sender, RoutedEventArgs e) {
-            Movies movie = new Movies() { Id = 2, Title = TitleBox.Text, Director = DirectorBox.Text, Genre = YearBox.Text, Description = DescriptionBox.Text, Image = _selectedImageBytes };
+            Movies movie = new Movies() { Id = 2, Title = TitleBox.Text, Genre = GenereBox.Text, Year = int.Parse(YearBox.Text), Director = DirectorBox.Text, Staff = CastBox.Text, Description = DescriptionBox.Text, Image = _selectedImageBytes };
 
             _movieRepository.Update(movie);
         }
@@ -95,8 +95,10 @@ namespace SerwisFilmowy
             Movies movie = _movieRepository.Read(_main.selectedTitle);
 
             TitleBox.Text = movie.Title;
+            GenereBox.Text = movie.Genre;
+            YearBox.Text = movie.Year.ToString();
             DirectorBox.Text = movie.Director;
-            YearBox.Text = movie.Genre;
+            CastBox.Text = movie.Staff;
             DescriptionBox.Text = movie.Description;
 
         }
