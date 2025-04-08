@@ -12,7 +12,7 @@ namespace SerwisFilmowy.Repositories
         bool Create(Movies movie);
         Movies Read(string Title);
         List<Movies> ReadAll();
-        bool Update(Movies movie);
+        bool Update(Movies movie, string selectedTitle);
         bool Delete(Movies movie);
     }
 }

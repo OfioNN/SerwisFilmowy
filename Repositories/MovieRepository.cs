@@ -184,7 +184,7 @@ namespace SerwisFilmowy.Repositories {
             return movies;
         }
 
-        public bool Update(Movies movie) {
+        public bool Update(Movies movie, string selectedTitle) {
             bool isUpdated = false;
 
             using (FbConnection connection = new FbConnection(connectionString)) {
@@ -195,7 +195,7 @@ namespace SerwisFilmowy.Repositories {
                         string dbQuery = @"UPDATE Movies SET 
                                         TITLE = @Title, GENRE = @Genre, RELASE = @Year, DIRECTOR = @Director, STAFF = @Staff, DESCRIPTION = @Description, IMAGE = @Image 
                                         WHERE 
-                                        ID = @Id";
+                                        TITLE = @SelectedTitle";
                         
                         using (FbCommand command = new FbCommand(dbQuery, connection)) {
                             command.Parameters.AddWithValue("@Title", movie.Title);
@@ -205,7 +205,7 @@ namespace SerwisFilmowy.Repositories {
                             command.Parameters.AddWithValue("@Staff", movie.Staff);
                             command.Parameters.AddWithValue("@Description", movie.Description);
                             command.Parameters.AddWithValue("@Image", movie.Image);
-                            command.Parameters.AddWithValue("@Id", movie.Id);
+                            command.Parameters.AddWithValue("@SelectedTitle", selectedTitle);
 
                             if (command.ExecuteNonQuery() == 1)
                                 isUpdated = true;
