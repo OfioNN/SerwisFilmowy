@@ -20,6 +20,9 @@ using Windows.Storage.Pickers;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Media.Imaging;
 using System.Drawing;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Storage;
+using Windows.UI.Popups;
 
 namespace SerwisFilmowy
 {
@@ -148,6 +151,24 @@ namespace SerwisFilmowy
             senderButton.IsEnabled = true;
 
         }
+
+        private void DragOverImage(object sender, DragEventArgs e) {
+            e.AcceptedOperation = DataPackageOperation.Copy;
+            e.DragUIOverride.Caption = "Upuœæ tutaj, aby za³adowaæ obraz";
+        }
+
+        private async void DropImage(object sender, DragEventArgs e) {
+            if (e.DataView.Contains(StandardDataFormats.StorageItems)) {
+                var items = await e.DataView.GetStorageItemsAsync();
+                if (items.Count > 0 && items[0] is StorageFile file) {
+                    // TU ju¿ masz `file`, wiêc mo¿esz go u¿yæ tak:
+                    _selectedImageBytes = File.ReadAllBytes(file.Path);
+                    poster.Source = new BitmapImage(new Uri(file.Path));
+                }
+            }
+
+        }
+
 
         protected override void OnNavigatedTo(NavigationEventArgs e) {
             if (e.Parameter is Main main) {
