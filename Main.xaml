@@ -48,6 +48,8 @@
                         <RowDefinition Height="0.25*"/>
                         <RowDefinition Height="0.15*"/>
                         <RowDefinition Height="0.25*"/>
+                        <RowDefinition Height="0.15*"/>
+                        <RowDefinition Height="0.25*"/>
                     </Grid.RowDefinitions>
 
                     <Border Grid.Row="0" Background="Black">
@@ -57,21 +59,27 @@
                         <TextBlock x:Name="titleTxt" Foreground="White" FontSize="18" FontWeight="Bold" TextAlignment="Center"/>
                     </Border>
                     <Border Grid.Row="2" Background="Black">
-                        <TextBlock Text="- Rok produkcji -" Foreground="White" FontSize="12" TextAlignment="Center"/>
+                        <TextBlock Text="- Gatunek -" Foreground="White" FontSize="12" TextAlignment="Center"/>
                     </Border>
                     <Border Grid.Row="3" Background="#FF373737">
-                        <TextBlock x:Name="yearTxt" Foreground="White" FontSize="18" FontWeight="Bold" TextAlignment="Center"/>
+                        <TextBlock x:Name="genereTxt" Foreground="White" FontSize="18" FontWeight="Bold" TextAlignment="Center"/>
                     </Border>
                     <Border Grid.Row="4" Background="Black">
-                        <TextBlock Text="- Reżyser -" Foreground="White" FontSize="12" TextAlignment="Center"/>
+                        <TextBlock Text="- Rok produkcji -" Foreground="White" FontSize="12" TextAlignment="Center"/>
                     </Border>
                     <Border Grid.Row="5" Background="#FF373737">
-                        <TextBlock x:Name="directorTxt" Foreground="White" FontSize="18" FontWeight="Bold" TextAlignment="Center"/>
+                        <TextBlock x:Name="yearTxt" Foreground="White" FontSize="18" FontWeight="Bold" TextAlignment="Center"/>
                     </Border>
                     <Border Grid.Row="6" Background="Black">
-                        <TextBlock Text="- Obsada -" Foreground="White" FontSize="12" TextAlignment="Center"/>
+                        <TextBlock Text="- Reżyser -" Foreground="White" FontSize="12" TextAlignment="Center"/>
                     </Border>
                     <Border Grid.Row="7" Background="#FF373737">
+                        <TextBlock x:Name="directorTxt" Foreground="White" FontSize="18" FontWeight="Bold" TextAlignment="Center"/>
+                    </Border>
+                    <Border Grid.Row="8" Background="Black">
+                        <TextBlock Text="- Obsada -" Foreground="White" FontSize="12" TextAlignment="Center"/>
+                    </Border>
+                    <Border Grid.Row="9" Background="#FF373737">
                         <TextBlock x:Name="castTxt" Foreground="White" FontSize="18" FontWeight="Bold" TextAlignment="Center"/>
                     </Border>
 

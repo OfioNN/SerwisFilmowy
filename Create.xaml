@@ -33,16 +33,20 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" Text="- Tytuł -" Foreground="White" FontSize="12" Padding="0"/>
             <TextBox x:Name="TitleBox" Grid.Column="0" Grid.Row="1" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0"/>
-            <TextBlock Grid.Row="2" Text="- Rok produkcji -" Foreground="White" FontSize="12" Padding="0"/>
-            <TextBox x:Name="YearBox" Grid.Column="0" Grid.Row="3" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0"/>
-            <TextBlock Grid.Row="4" Text="- Reżyser -" Foreground="White" FontSize="12" Padding="0"/>
-            <TextBox x:Name="DirectorBox" Grid.Column="0" Grid.Row="5" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0"/>
-            <TextBlock Grid.Row="6" Text="- Obsada -" Foreground="White" FontSize="12" Padding="0"/>
-            <TextBox x:Name="CastBox" Grid.Column="0" Grid.Row="7" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0"/>
+            <TextBlock Grid.Row="2" Text="- Gatunek -" Foreground="White" FontSize="12" Padding="0"/>
+            <TextBox x:Name="GenereBox" Grid.Column="0" Grid.Row="3" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0"/>
+            <TextBlock Grid.Row="4" Text="- Rok produkcji -" Foreground="White" FontSize="12" Padding="0"/>
+            <TextBox x:Name="YearBox" Grid.Column="0" Grid.Row="5" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0"/>
+            <TextBlock Grid.Row="6" Text="- Reżyser -" Foreground="White" FontSize="12" Padding="0"/>
+            <TextBox x:Name="DirectorBox" Grid.Column="0" Grid.Row="7" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0"/>
+            <TextBlock Grid.Row="8" Text="- Obsada -" Foreground="White" FontSize="12" Padding="0"/>
+            <TextBox x:Name="CastBox" Grid.Column="0" Grid.Row="9" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0"/>
         </Grid>
 
         <Grid Grid.Row="0" Grid.Column="1">
