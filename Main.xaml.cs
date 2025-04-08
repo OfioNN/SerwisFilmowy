@@ -78,11 +78,10 @@ namespace SerwisFilmowy
 
         }
 
-        private async void listView_ItemClick(object sender, ItemClickEventArgs e) {
+        private async void DisplayMovieDetails(string title) {
+            selectedTitle = title;
 
-            selectedTitle = (string)e.ClickedItem;
-
-            Movies movie = _movieRepository.Read(selectedTitle);
+            Movies movie = _movieRepository.Read(title);
 
             titleTxt.Text = movie.Title;
             genereTxt.Text = movie.Genre;
@@ -100,6 +99,12 @@ namespace SerwisFilmowy
             }
 
             usunBtn.IsEnabled = true;
+        }
+
+
+        private void listView_ItemClick(object sender, ItemClickEventArgs e) {
+
+            DisplayMovieDetails((string)e.ClickedItem);
         }
 
 
@@ -130,8 +135,25 @@ namespace SerwisFilmowy
 
         // Handle user selecting an item, in our case just output the selected item.
         private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args) {
-            SuggestionOutput.Text = args.SelectedItem.ToString();
+
+            string selectedTitle = args.SelectedItem.ToString();
+
+            // ZnajdŸ element pasuj¹cy do tytu³u
+            var selectedItem = listView.Items.Cast<string>().FirstOrDefault(item => item == selectedTitle);
+
+            if (selectedItem != null) {
+                // Zaznacz element
+                listView.SelectedItem = selectedItem;
+
+                // Przewiñ do zaznaczonego
+                listView.ScrollIntoView(selectedItem);
+            }
+
+            // Wyœwietl dane
+            DisplayMovieDetails(selectedTitle);
         }
+
+
     }
 }
 

@@ -51,7 +51,7 @@
 
         <Grid Grid.Row="0" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.3*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -64,9 +64,9 @@
                 <TextBox x:Name="DescriptionBox" Grid.Column="0" Grid.Row="1" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0" TextWrapping="Wrap"/>
             </Grid>
 
-            <Rectangle Grid.Row="1" Fill="#FF191919" Margin="200,50,200,50"/>
+            <Rectangle Grid.Row="1" Fill="#FF191919" Margin="100,50,100,50"/>
             <TextBlock Grid.Row="1" x:Name="noChooseTxt" Text="Nie wybrano zdjęcia." Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Image x:Name="poster" Grid.Row="1" Margin="0,0,0,0" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Image x:Name="poster" Grid.Row="1" Margin="110,60,110,60" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         </Grid>
 

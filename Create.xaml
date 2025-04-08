@@ -51,22 +51,22 @@
 
         <Grid Grid.Row="0" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.25*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="0.3*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Text="- Opis -" Foreground="White" FontSize="12" Padding="0"/>
                 <TextBox x:Name="DescriptionBox" AcceptsReturn="True" Grid.Column="0" Grid.Row="1" FontSize="16" TextAlignment="Left" FontStyle="Italic" Foreground="White" FontFamily="Arial" FontWeight="Medium" BorderBrush="#000814" BorderThickness="1" Background="#003554" Padding="5,3,0,3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="20,0,20,0" TextWrapping="Wrap"/>
         </Grid>
 
-            <Rectangle Grid.Row="1" Fill="#FF191919" Margin="200,50,200,50"/>
+            <Rectangle Grid.Row="1" Fill="#FF191919" Margin="100,50,100,50"/>
             <TextBlock Grid.Row="1" x:Name="noChooseTxt" Text="Nie wybrano zdjęcia." Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Image Grid.Row="1" x:Name="poster" Stretch="Uniform" Margin="210,60,210,60"/>
+            <Image Grid.Row="1" x:Name="poster" Stretch="Uniform" Margin="110,60,110,60"/>
 
         </Grid>
 
