@@ -151,7 +151,8 @@
                 PlaceholderText="Search movie" 
                 QueryIcon="Find" 
                 TextChanged="AutoSuggestBox_TextChanged" 
-                SuggestionChosen="AutoSuggestBox_SuggestionChosen"/>
+                SuggestionChosen="AutoSuggestBox_SuggestionChosen" 
+                QuerySubmitted="AutoSuggestBox_QuerySubmitted"/>
         </Border>
 
         <ListView x:Name="listView" 

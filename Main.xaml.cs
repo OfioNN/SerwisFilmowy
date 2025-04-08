@@ -153,6 +153,26 @@ namespace SerwisFilmowy
             DisplayMovieDetails(selectedTitle);
         }
 
+        private void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args) {
+            string queryText = args.QueryText;
+
+            if (moviesListTitle.Contains(queryText)) {
+                var selectedItem = listView.Items.Cast<string>().FirstOrDefault(item => item == queryText);
+
+                if (selectedItem != null) {
+                    // Zaznacz element
+                    listView.SelectedItem = selectedItem;
+
+                    // Przewiñ do zaznaczonego
+                    listView.ScrollIntoView(selectedItem);
+                }
+
+                // Wyœwietl dane
+                DisplayMovieDetails(queryText);
+            }
+        }
+
+
 
     }
 }
