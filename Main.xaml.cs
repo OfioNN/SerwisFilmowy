@@ -27,6 +27,7 @@ using Windows.Graphics.Printing;
 
 namespace SerwisFilmowy
 {
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -55,6 +56,29 @@ namespace SerwisFilmowy
                 listView.Items.Add(movie.Title);
                 moviesListTitle.Add(movie.Title);
             }
+
+            if (listView.Items.Count > 0) {
+
+                string firstMovie = listView.Items.First().ToString();
+
+                var selectedItem = listView.Items.Cast<string>().FirstOrDefault(item => item == firstMovie);
+
+                if (selectedItem != null) {
+                    // Zaznacz element
+                    listView.SelectedItem = selectedItem;
+
+                    // Przewiñ do zaznaczonego
+                    listView.ScrollIntoView(selectedItem);
+                }
+
+                // Wyœwietl dane
+                DisplayMovieDetails(firstMovie);
+            }
+            else {
+                editBtn.Visibility = Visibility.Collapsed;
+                NoDataFrame.Navigate(typeof(NoRecordsInfo), null, new DrillInNavigationTransitionInfo());
+            }
+
         }
 
 
@@ -63,14 +87,36 @@ namespace SerwisFilmowy
             ContentFrame.Navigate(typeof(Create), this, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
         }
 
-        private void Usun_Click(object sender, RoutedEventArgs e) {
-            Movies movie = new Movies() { Title = selectedTitle };
+        private async void Usun_Click(object sender, RoutedEventArgs e) {
 
-            _movieRepository.Delete(movie);
-            usunBtn.IsEnabled = false;
+            bool userConfirmed = await ShowYesNoDialogAsync();
 
-            readList();
+            if (userConfirmed) {
+                Movies movie = new Movies() { Title = selectedTitle };
+
+                _movieRepository.Delete(movie);
+                usunBtn.IsEnabled = false;
+
+                readList();
+            }
+
         }
+
+        private async Task<bool> ShowYesNoDialogAsync() {
+            var dialog = new ContentDialog {
+                Title = "Usuwanie",
+                Content = "Czy na pewno chcesz usun¹æ film z bazy danych?",
+                PrimaryButtonText = "Tak",
+                CloseButtonText = "Nie",
+                DefaultButton = ContentDialogButton.Primary,
+                XamlRoot = this.XamlRoot
+            };
+
+            var result = await dialog.ShowAsync();
+
+            return result == ContentDialogResult.Primary;
+        }
+
 
         private void Edytuj_Click(object sender, RoutedEventArgs e) {
             ContentFrame.Navigate(typeof(Update), this, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
@@ -98,6 +144,8 @@ namespace SerwisFilmowy
                 poster.Source = bitmapImage;
             }
 
+            editBtn.Visibility = Visibility.Visible;
+            editBtn.IsEnabled = true;
             usunBtn.IsEnabled = true;
         }
 
@@ -174,8 +222,9 @@ namespace SerwisFilmowy
             }
         }
 
-
-
     }
+
 }
+
+
 
