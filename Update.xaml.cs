@@ -50,6 +50,10 @@ namespace SerwisFilmowy
             Movies movie = new Movies() { Title = TitleBox.Text, Genre = GenereBox.Text, Year = int.Parse(YearBox.Text), Director = DirectorBox.Text, Staff = CastBox.Text, Description = DescriptionBox.Text, Image = _selectedImageBytes };
 
             _movieRepository.Update(movie, _main.selectedTitle);
+
+            _main.readList();
+
+            ContentFrame.Navigate(typeof(Main), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
         }
 
         private async void LoadImage_Click(object sender, RoutedEventArgs e) {
@@ -80,6 +84,8 @@ namespace SerwisFilmowy
             var file = await openPicker.PickSingleFileAsync();
             if (file != null) {
                 _selectedImageBytes = File.ReadAllBytes(file.Path);
+
+                poster.Source = new BitmapImage(new Uri(file.Path));
             }
 
             //re-enable the button
@@ -101,6 +107,17 @@ namespace SerwisFilmowy
             CastBox.Text = movie.Staff;
             DescriptionBox.Text = movie.Description;
 
+            if (movie.Image != null) {
+                using (var stream = new MemoryStream(movie.Image)) {
+                    var bitmapImage = new BitmapImage();
+                    bitmapImage.SetSource(stream.AsRandomAccessStream());
+                    poster.Source = bitmapImage;
+                    _selectedImageBytes = movie.Image;
+                }
+            }
+            else {
+                noChooseTxt.Visibility = Visibility.Visible;
+            }
         }
 
     }

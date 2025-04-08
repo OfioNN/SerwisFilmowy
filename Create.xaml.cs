@@ -49,6 +49,8 @@ namespace SerwisFilmowy
             _movieRepository.Create(movie);
 
             _main.readList();
+
+            ContentFrame.Navigate(typeof(Main), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }
 
         private async void LoadImage_Click(object sender, RoutedEventArgs e) {
