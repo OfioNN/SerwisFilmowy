@@ -36,6 +36,9 @@ namespace SerwisFilmowy
         private Main _main;
 
         private bool canSave = true;
+        private bool isEmpty = false;
+
+        private string currentTitle;
 
         public Update()
         {
@@ -49,7 +52,10 @@ namespace SerwisFilmowy
 
 
         private void Save_Click(object sender, RoutedEventArgs e) {
-            if (canSave) {
+
+            IsEmpty();
+
+            if (canSave && !isEmpty) {
                 Movies movie = new Movies() { Title = TitleBox.Text, Genre = GenereBox.Text, Year = int.Parse(YearBox.Text), Director = DirectorBox.Text, Staff = CastBox.Text, Description = DescriptionBox.Text, Image = _selectedImageBytes };
 
                 _movieRepository.Update(movie, _main.selectedTitle);
@@ -62,14 +68,47 @@ namespace SerwisFilmowy
 
         }
 
+        private void IsEmpty() {
+            if (TitleBox.Text == "" || GenereBox.Text == "" || YearBox.Text == "" || DirectorBox.Text == "" || CastBox.Text == "" || DescriptionBox.Text == "" || _selectedImageBytes == null) {
+                isEmpty = true;
+            }
+            else {
+                isEmpty = false;
+            }
+        }
+
+
         private void TitleLostFocus(object sender, RoutedEventArgs e) {
-            if (_main.moviesListTitle.Contains(TitleBox.Text)) {
+            if (_main.moviesListTitle.Contains(TitleBox.Text) && TitleBox.Text != currentTitle) {
                 TitleBox.BorderBrush = new SolidColorBrush(Windows.UI.Color.FromArgb(100, 255, 0, 0));
                 TitleBox.BorderThickness = new Thickness(2);
                 canSave = false;
             }
             else {
                 TitleBox.BorderThickness = new Thickness(0);
+                canSave = true;
+            }
+        }
+
+
+        private void YearTxtPreviewKeyDown(object sender, Microsoft.UI.Xaml.Input.KeyRoutedEventArgs e) {
+            if (!char.IsDigit((char)e.Key) && e.Key != Windows.System.VirtualKey.Back && e.Key != Windows.System.VirtualKey.Tab &&
+                e.Key != Windows.System.VirtualKey.Home && e.Key != Windows.System.VirtualKey.End &&
+                e.Key != Windows.System.VirtualKey.Control && e.Key != Windows.System.VirtualKey.Left && e.Key != Windows.System.VirtualKey.Right) {
+
+                e.Handled = true;
+            }
+        }
+
+
+        private void YearTxtLostFocus(object sender, RoutedEventArgs e) {
+            if (int.Parse(YearBox.Text) > 2030 || int.Parse(YearBox.Text) < 1888) {
+                YearBox.BorderBrush = new SolidColorBrush(Windows.UI.Color.FromArgb(100, 255, 0, 0));
+                YearBox.BorderThickness = new Thickness(2);
+                canSave = false;
+            }
+            else {
+                YearBox.BorderThickness = new Thickness(0);
                 canSave = true;
             }
         }
@@ -136,6 +175,8 @@ namespace SerwisFilmowy
             else {
                 noChooseTxt.Visibility = Visibility.Visible;
             }
+
+            currentTitle = movie.Title;
         }
 
     }

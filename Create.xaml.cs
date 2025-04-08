@@ -33,6 +33,7 @@ namespace SerwisFilmowy
         private Main _main;
 
         private bool canSave = true;
+        private bool isEmpty = true;
 
         public Create()
         {
@@ -48,9 +49,9 @@ namespace SerwisFilmowy
 
         private void Save_Click(object sender, RoutedEventArgs e) {
 
-            CanSave();
+            IsEmpty();
 
-            if (canSave) {
+            if (canSave && !isEmpty) {
                 Movies movie = new Movies() { Title = TitleBox.Text, Genre = GenereBox.Text, Year = int.Parse(YearBox.Text), Director = DirectorBox.Text, Staff = CastBox.Text, Description = DescriptionBox.Text, Image = _selectedImageBytes };
 
                 _movieRepository.Create(movie);
@@ -62,16 +63,16 @@ namespace SerwisFilmowy
 
         }
 
-        private void CanSave() {
+        private void IsEmpty() {
             if (TitleBox.Text == "" || GenereBox.Text == "" || YearBox.Text == "" || DirectorBox.Text == "" || CastBox.Text == "" || DescriptionBox.Text == "" || _selectedImageBytes == null) {
-                canSave = false;
+                isEmpty = true;
             }
             else {
-                canSave = true;
+                isEmpty = false;
             }
         }
-   
-        
+
+
         private void TitleLostFocus(object sender, RoutedEventArgs e) {
             if(_main.moviesListTitle.Contains(TitleBox.Text)) {
                 TitleBox.BorderBrush = new SolidColorBrush(Windows.UI.Color.FromArgb(100,255,0,0));
