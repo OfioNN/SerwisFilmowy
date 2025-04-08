@@ -65,7 +65,8 @@
         </Grid>
 
             <Rectangle Grid.Row="1" Fill="#FF191919" Margin="200,50,200,50"/>
-            <TextBlock Grid.Row="1" Text="Nie wybrano zdjęcia." Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="1" x:Name="noChooseTxt" Text="Nie wybrano zdjęcia." Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Image Grid.Row="1" x:Name="poster" Stretch="Uniform" Margin="210,60,210,60"/>
 
         </Grid>
 

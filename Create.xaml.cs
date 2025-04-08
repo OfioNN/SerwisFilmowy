@@ -18,6 +18,7 @@ using SerwisFilmowy.Repositories;
 using SerwisFilmowy.Model;
 using Windows.Storage.Pickers;
 using Microsoft.UI.Xaml.Media.Animation;
+using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace SerwisFilmowy
 {
@@ -78,6 +79,9 @@ namespace SerwisFilmowy
             var file = await openPicker.PickSingleFileAsync();
             if (file != null) {
                 _selectedImageBytes = File.ReadAllBytes(file.Path);
+
+                noChooseTxt.Visibility = Visibility.Collapsed;
+                poster.Source = new BitmapImage(new Uri(file.Path));
             }
 
             //re-enable the button
