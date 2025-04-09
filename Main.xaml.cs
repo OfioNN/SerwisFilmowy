@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -51,6 +51,7 @@ namespace SerwisFilmowy
 
         public void readList() {
             moviesList.Clear();
+            moviesListTitle.Clear();
             listView.Items.Clear();
 
             moviesList = _movieRepository.ReadAll();
@@ -66,14 +67,11 @@ namespace SerwisFilmowy
                 var selectedItem = listView.Items.Cast<string>().FirstOrDefault(item => item == _title);
 
                 if (selectedItem != null) {
-                    // Zaznacz element
                     listView.SelectedItem = selectedItem;
 
-                    // PrzewiÒ do zaznaczonego
                     listView.ScrollIntoView(selectedItem);
                 }
 
-                // Wyúwietl dane
                 DisplayMovieDetails(_title);
             }
             else if (listView.Items.Count > 0 && _title == "") {
@@ -83,21 +81,17 @@ namespace SerwisFilmowy
                 var selectedItem = listView.Items.Cast<string>().FirstOrDefault(item => item == firstMovie);
 
                 if (selectedItem != null) {
-                    // Zaznacz element
                     listView.SelectedItem = selectedItem;
 
-                    // PrzewiÒ do zaznaczonego
                     listView.ScrollIntoView(selectedItem);
                 }
 
-                // Wyúwietl dane
                 DisplayMovieDetails(firstMovie);
             }
             else {
                 editBtn.Visibility = Visibility.Collapsed;
                 NoDataFrame.Navigate(typeof(NoRecordsInfo), null, new DrillInNavigationTransitionInfo());
             }
-
         }
 
 
@@ -125,7 +119,7 @@ namespace SerwisFilmowy
         private async Task<bool> ShowYesNoDialogAsync() {
             var dialog = new ContentDialog {
                 Title = "Usuwanie",
-                Content = "Czy na pewno chcesz usunπÊ film z bazy danych?",
+                Content = "Czy na pewno chcesz usunƒÖƒá film z bazy danych?",
                 PrimaryButtonText = "Tak",
                 CloseButtonText = "Nie",
                 DefaultButton = ContentDialogButton.Primary,
@@ -157,11 +151,14 @@ namespace SerwisFilmowy
             descriptionTxt.Text = movie.Description;
 
             if (movie.Image != null && movie.Image.Length > 0) {
+                await Task.Delay(150);
+
                 BitmapImage bitmapImage = new BitmapImage();
                 using (MemoryStream ms = new MemoryStream(movie.Image)) {
                     await bitmapImage.SetSourceAsync(ms.AsRandomAccessStream());
+                    poster.Source = bitmapImage;
                 }
-                poster.Source = bitmapImage;
+
             }
 
             editBtn.Visibility = Visibility.Visible;
@@ -204,18 +201,18 @@ namespace SerwisFilmowy
             string selectedTitle = args.SelectedItem.ToString();
 
             if (selectedTitle != "No results found") {
-                // Znajdü element pasujπcy do tytu≥u
+                // Znajd≈∫ element pasujƒÖcy do tytu≈Çu
                 var selectedItem = listView.Items.Cast<string>().FirstOrDefault(item => item == selectedTitle);
 
                 if (selectedItem != null) {
                     // Zaznacz element
                     listView.SelectedItem = selectedItem;
 
-                    // PrzewiÒ do zaznaczonego
+                    // Przewi≈Ñ do zaznaczonego
                     listView.ScrollIntoView(selectedItem);
                 }
 
-                // Wyúwietl dane
+                // Wy≈õwietl dane
                 DisplayMovieDetails(selectedTitle);
             }
         }
@@ -230,11 +227,11 @@ namespace SerwisFilmowy
                     // Zaznacz element
                     listView.SelectedItem = selectedItem;
 
-                    // PrzewiÒ do zaznaczonego
+                    // Przewi≈Ñ do zaznaczonego
                     listView.ScrollIntoView(selectedItem);
                 }
 
-                // Wyúwietl dane
+                // Wy≈õwietl dane
                 DisplayMovieDetails(queryText);
             }
         }

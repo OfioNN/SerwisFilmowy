@@ -62,7 +62,8 @@ namespace SerwisFilmowy
             IsEmpty();
 
             if (canSave && !isEmpty) {
-                Movies movie = new Movies() { Title = TitleBox.Text, Genre = GenereBox.Text, Year = int.Parse(YearBox.Text), Director = DirectorBox.Text, Staff = CastBox.Text, Description = DescriptionBox.Text, Image = _selectedImageBytes };
+                Movies movie = new Movies() { Title = TitleBox.Text, Genre = GenereBox.Text, Year = int.Parse(YearBox.Text), 
+                    Director = DirectorBox.Text, Staff = CastBox.Text, Description = DescriptionBox.Text, Image = _selectedImageBytes };
 
                 _movieRepository.Update(movie, _main.selectedTitle);
 
@@ -71,7 +72,6 @@ namespace SerwisFilmowy
                 ContentFrame.Navigate(typeof(Main), this, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
 
             }
-
         }
 
         private void IsEmpty() {

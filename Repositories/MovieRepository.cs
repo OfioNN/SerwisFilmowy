@@ -20,7 +20,6 @@ namespace SerwisFilmowy.Repositories {
 
         public MovieRepository() {
 
-
             if (!Directory.Exists(folderPath)) {
                 Directory.CreateDirectory(folderPath);
             }
@@ -64,7 +63,6 @@ namespace SerwisFilmowy.Repositories {
                     Console.WriteLine($"Error: {ex.Message}");
                 }
             }
-
         }
 
         public bool Create(Movies movie) {
