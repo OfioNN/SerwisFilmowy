@@ -151,7 +151,9 @@ namespace SerwisFilmowy
             descriptionTxt.Text = movie.Description;
 
             if (movie.Image != null && movie.Image.Length > 0) {
-                await Task.Delay(150);
+                progressRing.IsActive = true;
+                await Task.Delay(500);
+                progressRing.IsActive = false;
 
                 BitmapImage bitmapImage = new BitmapImage();
                 using (MemoryStream ms = new MemoryStream(movie.Image)) {
