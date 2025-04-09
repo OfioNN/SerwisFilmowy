@@ -40,7 +40,9 @@ namespace SerwisFilmowy
         private bool canSave = true;
         private bool isEmpty = false;
 
-        private string currentTitle;
+        private string _currentTitle;
+        public string currentTitle;
+
 
         public Update()
         {
@@ -48,7 +50,9 @@ namespace SerwisFilmowy
         }
 
         private void Back_Click(object sender, RoutedEventArgs e) {
-            ContentFrame.Navigate(typeof(Main), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
+            currentTitle = TitleBox.Text;
+
+            ContentFrame.Navigate(typeof(Main), this, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
         }
 
 
@@ -62,9 +66,9 @@ namespace SerwisFilmowy
 
                 _movieRepository.Update(movie, _main.selectedTitle);
 
-                _main.readList();
+                currentTitle = TitleBox.Text;
 
-                ContentFrame.Navigate(typeof(Main), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
+                ContentFrame.Navigate(typeof(Main), this, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
 
             }
 
@@ -81,7 +85,7 @@ namespace SerwisFilmowy
 
 
         private void TitleLostFocus(object sender, RoutedEventArgs e) {
-            if (_main.moviesListTitle.Contains(TitleBox.Text) && TitleBox.Text != currentTitle) {
+            if (_main.moviesListTitle.Contains(TitleBox.Text) && TitleBox.Text != _currentTitle) {
                 TitleBox.BorderBrush = new SolidColorBrush(Windows.UI.Color.FromArgb(100, 255, 0, 0));
                 TitleBox.BorderThickness = new Thickness(2);
                 canSave = false;
@@ -195,7 +199,7 @@ namespace SerwisFilmowy
                 noChooseTxt.Visibility = Visibility.Visible;
             }
 
-            currentTitle = movie.Title;
+            _currentTitle = movie.Title;
         }
 
     }

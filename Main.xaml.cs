@@ -37,6 +37,10 @@ namespace SerwisFilmowy
         public List<string> moviesListTitle = new List<string>();
         List<Movies> moviesList = new List<Movies>();
         public string selectedTitle;
+        private Create _create;
+        private Update _update;
+
+        public string _title = "";
 
         public Main() {
             this.InitializeComponent();
@@ -57,7 +61,22 @@ namespace SerwisFilmowy
                 moviesListTitle.Add(movie.Title);
             }
 
-            if (listView.Items.Count > 0) {
+            if (listView.Items.Count > 0 && _title != "") {
+
+                var selectedItem = listView.Items.Cast<string>().FirstOrDefault(item => item == _title);
+
+                if (selectedItem != null) {
+                    // Zaznacz element
+                    listView.SelectedItem = selectedItem;
+
+                    // Przewiñ do zaznaczonego
+                    listView.ScrollIntoView(selectedItem);
+                }
+
+                // Wyœwietl dane
+                DisplayMovieDetails(_title);
+            }
+            else if (listView.Items.Count > 0 && _title == "") {
 
                 string firstMovie = listView.Items.First().ToString();
 
@@ -97,6 +116,7 @@ namespace SerwisFilmowy
                 _movieRepository.Delete(movie);
                 usunBtn.IsEnabled = false;
 
+                _title = "";
                 readList();
             }
 
@@ -154,9 +174,6 @@ namespace SerwisFilmowy
 
             DisplayMovieDetails((string)e.ClickedItem);
         }
-
-
-        
 
 
         // Handle text change and present suitable items
@@ -220,6 +237,21 @@ namespace SerwisFilmowy
                 // Wyœwietl dane
                 DisplayMovieDetails(queryText);
             }
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
+            if (e.Parameter is Create create) {
+                _create = create;
+
+                _title = _create.currentTitle;
+            }            
+            else if (e.Parameter is Update update) {
+                _update = update;
+
+                _title = _update.currentTitle;
+            }
+            readList();
+            
         }
 
     }

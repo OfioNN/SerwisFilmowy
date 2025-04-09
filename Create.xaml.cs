@@ -38,6 +38,8 @@ namespace SerwisFilmowy
         private bool canSave = true;
         private bool isEmpty = true;
 
+        public string currentTitle;
+
         public Create()
         {
             this.InitializeComponent();
@@ -59,9 +61,9 @@ namespace SerwisFilmowy
 
                 _movieRepository.Create(movie);
 
-                _main.readList();
+                currentTitle = TitleBox.Text;
 
-                ContentFrame.Navigate(typeof(Main), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+                ContentFrame.Navigate(typeof(Main), this, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
             }
 
         }
