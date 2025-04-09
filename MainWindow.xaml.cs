@@ -31,6 +31,8 @@ namespace SerwisFilmowy {
 
     public sealed partial class MainWindow : Window {
 
+        public string _title = "";
+
         public MainWindow() {
             this.InitializeComponent();
 
@@ -47,7 +49,7 @@ namespace SerwisFilmowy {
                 presenter.SetBorderAndTitleBar(true, false);
             }
 
-            ContentFrame.Navigate(typeof(Main), null, new DrillInNavigationTransitionInfo());
+            ContentFrame.Navigate(typeof(Main), this, new DrillInNavigationTransitionInfo());
 
         }
 

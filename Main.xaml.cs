@@ -39,17 +39,17 @@ namespace SerwisFilmowy
         public string selectedTitle;
         private Create _create;
         private Update _update;
+        private MainWindow _mainW;
 
-        public string _title = "";
+
+        public string _title;
 
         public Main() {
             this.InitializeComponent();
 
-            readList();
-
         }
 
-        public void readList() {
+        public void ReadList() {
             moviesList.Clear();
             moviesListTitle.Clear();
             listView.Items.Clear();
@@ -111,7 +111,7 @@ namespace SerwisFilmowy
                 usunBtn.IsEnabled = false;
 
                 _title = "";
-                readList();
+                ReadList();
             }
 
         }
@@ -151,9 +151,10 @@ namespace SerwisFilmowy
             descriptionTxt.Text = movie.Description;
 
             if (movie.Image != null && movie.Image.Length > 0) {
-                progressRing.IsActive = true;
-                await Task.Delay(500);
-                progressRing.IsActive = false;
+                // Jeśli jest problem z ładowaniem zdjęcia
+                //progressRing.IsActive = true;
+                //await Task.Delay(500);
+                //progressRing.IsActive = false;
 
                 BitmapImage bitmapImage = new BitmapImage();
                 using (MemoryStream ms = new MemoryStream(movie.Image)) {
@@ -243,13 +244,18 @@ namespace SerwisFilmowy
                 _create = create;
 
                 _title = _create.currentTitle;
-            }            
+            }
             else if (e.Parameter is Update update) {
                 _update = update;
 
                 _title = _update.currentTitle;
             }
-            readList();
+            else if (e.Parameter is MainWindow mainW) {
+                _mainW = mainW;
+
+                _title = _mainW._title;
+            }
+                ReadList();
             
         }
 
